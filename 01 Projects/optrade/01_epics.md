@@ -1,6 +1,6 @@
 
 
-epic_001
+#### EPIC-001 ####
 
 Goal - ft an SLM like qwen 7B which is not built to do turns, loops & tool calls to do all
 
@@ -54,3 +54,42 @@ Details - **Trajectory format & environment**
 - Berkeley Function-Calling Leaderboard (BFCL) methodology
 - Agentic coding benchmarks (SWE-bench, terminal-agent benchmarks)
 - Multi-turn/tool-use eval metrics (task success rate, calls-to-completion, error recovery)
+
+
+#### EPIC-002 ####
+
+Goal - train an SLM from scratch 
+
+
+data/processed/
+├── tinystories_train.jsonl
+├── tinystories_val.jsonl
+├── python_train.jsonl
+├── python_val.jsonl
+├── instruction_train.jsonl
+├── instruction_val.jsonl
+├── codealpaca_train.jsonl
+└── codealpaca_val.jsonl
+
+             ↓
+        1. Inspect data
+             ↓
+        2. Build tokenizer
+             ↓
+        3. Tokenize + pack
+             ↓
+        4. Build PyTorch Dataset
+             ↓
+        5. Build tiny GPT
+             ↓
+        6. Train
+             ↓
+        7. Evaluate
+             ↓
+        8. Generate text
+             ↓
+        9. Add Python/code training
+             ↓
+       10. Instruction tuning
+             ↓
+       11. Tool calling

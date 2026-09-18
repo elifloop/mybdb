@@ -9,4 +9,13 @@
 ### optrade ###
 -> syll - GSK diary/ Keep for algos/ideas
 -> resources - 
--> applied -
+	git@github.com:elifloop/vslm.git  
+	git@github.com:elifloop/ubuntu-harness-ft.git
+-> applied 
+	- qwen harness enablement - git@github.com:elifloop/ubuntu-harness-ft.git
+	- vslm from scratch - prepared training data -> next step using chatgpt
+
+### FDE ###
+-> syll - just gsk work
+-> resouces  - https://www.youtube.com/playlist?list=PLangBM27OtEA
+-> applied - at work
