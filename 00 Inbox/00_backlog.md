@@ -4,3 +4,4 @@
 - copy core-computing
 - add hallucinator model to optrade
 - kernel engineering
+- add resume points/ resume etc. to inbox
