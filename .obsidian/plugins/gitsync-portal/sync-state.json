@@ -2,13 +2,13 @@
   "version": 1,
   "favorites": [],
   "history": [
+    "00 Inbox/00_backlog.md",
+    "00 Inbox/01_recap.md",
+    "00 Inbox/02_resource_map.md",
+    "00 Inbox/03_curious_qs.md",
     "01 Projects/optrade/00_plan.md",
     "01 Projects/optrade/02_algos.md",
     "01 Projects/optrade/01_epics.md",
-    "00 Inbox/00_backlog.md",
-    "04 Ideas/00_aha.md",
-    "00 Inbox/03_curious_qs.md",
-    "00 Inbox/02_resource_map.md",
-    "00 Inbox/01_recap.md"
+    "04 Ideas/00_aha.md"
   ]
 }
