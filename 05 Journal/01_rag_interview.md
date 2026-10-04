@@ -30,6 +30,12 @@ Diagnose: This is the classic context-fragmentation failure mode of naive fixed-
 
 Propose Mitigation: Implement Parent-Child Chunking (retrieve small child chunks for precise vector matching, but feed the broader parent chunk/section to the LLM) or Contextual Retrieval (injecting document-level summaries into chunk headers).
 
+#### Metrics
+
+- Chunk Size & Overlap Ratio: Measured in tokens (e.g., 512 token size with a 10% overlap). Determines the balance between context granularity and boundary fragmentation.
+- Ingestion Throughput: Measured in documents-per-second or tokens-per-second during bulk processing.
+- Deduplication Rate: Percentage of duplicate or near-duplicate documents successfully filtered out prior to embedding generation to measure storage and cost savings.
+- Embedding Drift: Measure of distributional shift in vector space when updating or mixing embedding models over time.
 
 ## Retrieval side 
 
@@ -67,21 +73,13 @@ Quantify Trade-offs: Explain that dropping HNSW for unindexed flat searches (Bru
 Alternative Proposals: Move to DiskANN or compressed indexes like PQ (Product Quantization) combined with IVF to compress vector memory footprints by 4x–8x while maintaining acceptable recall. 
 Implement Tiered Storage: Keep hot/recent data in high-performance HNSW indexes in RAM, and cold historical data in compressed IVF-PQ or disk-backed indexes.
 
-###### Extras
+#### Metrics
+- MetricsRecall@K: The proportion of relevant documents captured within the top-$K$ retrieved results (crucial for ensuring the right answer is actually present in the candidate pool).
+- Precision@K: The proportion of retrieved documents in the top-$K$ that are actually relevant (measures how much noise you are filtering out).
+- MRR (Mean Reciprocal Rank): Evaluates how high up the first correct answer appears in the ranked retrieval list.
+- NDCG (Normalized Discounted Cumulative Gain): Measures ranking quality, penalizing systems when relevant items are buried lower down in the retrieved list.
+- Query Latency (P95 / P99): End-to-end time taken from user query submission to receiving the final reranked context chunks.
 
-top_k - use intent based top_k
-top_p - depends on model 
-reranker - I implemented it as a "multistage relevance 
-
-q1. How can you optimize the performance of a RAG system in terms of both accuracy and efficiency?
-
-A: To get the best performance from a RAG system in terms of accuracy and efficiency, you can use several strategies:
-
-Fine-tune models: Adjust the retriever and generator models using data specific to your task. This helps them perform better on specialized queries.
-Efficient indexing: Organize your knowledge base using quick data structures like inverted indices or hashing. This speeds up the process of finding relevant information.
-Use caching: Store frequently accessed data so it doesn’t have to be retrieved repeatedly. This improves efficiency and speeds up responses.
-Reduce retrieval steps: Minimize the number of times you search for information. Improve the retriever’s precision or use re-ranking to ensure only the best results are passed to the generator, cutting down on unnecessary processing.
-Hybrid search: Combine sparse and dense retrieval methods. For example, use sparse retrieval to quickly find a broad set of relevant documents, then apply dense retrieval to refine and rank these results more accurately.
 
 ##### Generation side
 
@@ -116,6 +114,12 @@ Tiered LLM Routing: Use a fast, cheap small language model (SLM) like Llama-3-8B
 
 Context Window Optimization: Prune low-scoring reranked chunks instead of blindly passing all top-$k$ chunks to the LLM.
 
+#### Metrics
+- Faithfulness / Groundedness: Measures whether the generated answer is strictly derived from the retrieved context without introducing external hallucinations.
+- Context Relevance: Measures whether the retrieved context chunks contain only necessary information or include excessive noise.
+- Answer Relevance: Measures whether the final response directly addresses the user's intent or drifts into unrelated topics.
+- TTFT (Time to First Token): The latency duration before the streaming generation begins rendering on the client side.
+- Token Cost Efficiency: Cost per 1,000 queries tracked across embedding calls, reranking APIs, and LLM token consumption.
 
 
 
