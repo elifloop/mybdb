@@ -2,23 +2,25 @@
 ## Roadmap.md
 
 ### HL components
-ingestion -
+ingestion - text quality scoring(mvoc quality); category classification model; NER; sentiment analysis using fuzzy wuzzy ; twitter/ social listening apis
 retrieval - 
 generation - 
 
-
 ### Application
-multi-agentic projects 
-automation projects
+multi-agentic projects - askAIM
+automation projects - Forecasting Karpathy Loops
 
-### DS projects
-Technical
-langgraph
-streaming
-glean
-performance
-cost
-evals
+### Topic checklist
+- Error metrics
+- AI models
+- Langchain
+- Langgraph
+- Streaming
+- Glean api
+- Performance
+- Cost
+- Evals
+- Responsible AI
 
 ### Intro
 
