@@ -22,6 +22,10 @@ automation projects - Forecasting Karpathy Loops
 - Evals
 - Responsible AI
 
+### Links
+🔗 https://www.datacamp.com/blog/langchain-interview-questions
+
+
 ### Intro
 
 I’m Harsh. I’m currently a Principal AI Engineer at GSK, where I work primarily on building and productionizing AI and ML systems end to end.
