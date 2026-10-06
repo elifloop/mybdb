@@ -1,14 +1,17 @@
 
 ## Roadmap.md
 
-### HL components
-ingestion - text quality scoring(mvoc quality); category classification model; NER; sentiment analysis using fuzzy wuzzy ; twitter/ social listening apis
-retrieval - 
-generation - 
+### RAG HL components
+
+  * ingestion - text quality scoring(mvoc quality); category classification model; NER; sentiment analysis using fuzzy wuzzy ; twitter/ social listening apis
+  * retrieval - 
+  * generation - 
 
 ### Application
-multi-agentic projects - askAIM
-automation projects - Forecasting Karpathy Loops
+
+* multi-agentic projects - askAIM (Advanced RAG) | PatientPlus (Modular RAG)
+* automation projects - Forecasting Karpathy Loops (??)
+* blenrep mvoc (naive RAG)
 
 ### Topic checklist
 - Error metrics
@@ -26,7 +29,7 @@ automation projects - Forecasting Karpathy Loops
 🔗 https://www.datacamp.com/blog/langchain-interview-questions
 
 
-### Intro
+### My Intro
 
 I’m Harsh. I’m currently a Principal AI Engineer at GSK, where I work primarily on building and productionizing AI and ML systems end to end.
 
