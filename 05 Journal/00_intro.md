@@ -1,35 +1,42 @@
 
-## Roadmap.md
+## Section - 1 - RAG
 
-### RAG HL components
+### HL components
 
   * ingestion - text quality scoring(mvoc quality); category classification model; NER; sentiment analysis using fuzzy wuzzy ; twitter/ social listening apis
-  * retrieval - 
-  * generation - 
+  * retrieval - HyDE, Hybrid Fusion Scoring, reranking algos, HNSW, IVF, retrieval metrics
+  * generation - AI models, context management, guardrails caching, genEval metrices
+  * architecture - naive vs advanced vs modular, streaming SSE, agent evals, langgraph
 
-### Application
+### Application 🈸
 
 * multi-agentic projects - askAIM (Advanced RAG) | PatientPlus (Modular RAG)
-* automation projects - Forecasting Karpathy Loops (??)
+* automation projects - Forecasting Karpathy Loops (ReAct agentic)
 * blenrep mvoc (naive RAG)
 
-### Topic checklist
-- Error metrics
-- AI models
-- Langchain
-- Langgraph
-- Streaming
-- Glean api
-- Performance
-- Cost
-- Evals
-- Responsible AI
 
 ### Links
 🔗 https://www.datacamp.com/blog/langchain-interview-questions
 
+## Section - 2 - ML
 
-### My Intro
+### HL components
+
+- Random Forest
+- LightGBM
+- XGBoost
+- CNN
+- temporal CNN
+
+### Application 🈸
+
+* TCN forecasting
+* Customer segmentation - growth (RF) + initiation (LightGBM)
+* Customer propensity modelling - (XGBoost)
+* CNN image classification
+
+
+## My Intro
 
 I’m Harsh. I’m currently a Principal AI Engineer at GSK, where I work primarily on building and productionizing AI and ML systems end to end.
 
