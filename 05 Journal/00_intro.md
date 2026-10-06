@@ -30,10 +30,10 @@
 
 ### Application 🈸
 
-* TCN forecasting
-* Customer segmentation - growth (RF) + initiation (LightGBM)
-* Customer propensity modelling - (XGBoost)
-* CNN image classification
+* Sales Panel forecasting (TCN)
+* Cx Segmentation - growth (RF) + initiation (LightGBM)
+* Cx propensity  - (XGBoost)
+* Image classification - (CNN)
 
 
 ## My Intro
