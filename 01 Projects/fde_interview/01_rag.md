@@ -44,7 +44,7 @@ Propose Mitigation: Implement Parent-Child Chunking (retrieve small child chunks
 - rerankers - Cross-Encoders vs. Bi-Encoders -
   - Bi-Encoder (Retrieval): The standard vector search. Documents and queries are embedded independently into vectors, and cosine similarity is computed. Fast ($O(N)$ lookup via index), but sacrifices fine-grained interaction between query and text tokens.
   - Cross-Encoder (Reranking): The query and the retrieved document chunk are fed together into a transformer model at the same time. The model evaluates them jointly. Highly accurate, but computationally expensive ($O(K)$ where $K$ is the number of candidate chunks, e.g., top 50).
-- vector db indexing algo - HNSW vs. IVF-
+- vector db indexing algo - HNSW vs. IVF -
   - HNSW - How it works: A multi-layer graph structure where searching navigates from coarse global layers down to fine local layers. - Pros: Blazing fast query latency, extremely high recall ($>98\%$). - Cons: Massive RAM overhead (the graph must live primarily in memory) and slow index build times.
   - IVF: Clusters the vector space using $k$-means. At query time, it only searches the clusters closest to the query vector. - Pros: Memory-efficient, scales to billions of vectors without needing all vectors in RAM. - Cons: Lower recall unless you increase the number of clusters to search ($nprobes$), which drives up latency.
 
@@ -121,9 +121,96 @@ Context Window Optimization: Prune low-scoring reranked chunks instead of blindl
 - TTFT (Time to First Token): The latency duration before the streaming generation begins rendering on the client side.
 - Token Cost Efficiency: Cost per 1,000 queries tracked across embedding calls, reranking APIs, and LLM token consumption.
 
+###### Scenario C
 
+“Customers complain that our RAG chatbot is slow and sometimes gives bad answers. How would you investigate?”
 
+#### Step 1 — Establish the user-level SLO
+Task success
+      │
+      ├── Quality
+      │     ├── Correctness
+      │     ├── Relevance
+      │     └── Groundedness
+      │
+      └── Experience
+            ├── TTFT
+            ├── P95 latency
+            └── P99 latency
 
+#### Step 2 — Decompose latency
+Request
+  ↓
+Queue
+  ↓
+Query processing
+  ↓
+Embedding
+  ↓
+Vector search
+  ↓
+Reranking
+  ↓
+Prompt construction
+  ↓
+LLM prefill → TTFT
+  ↓
+LLM generation
+  ↓
+Post-processing
+  ↓
+Response
 
+#### Step 3 — Decompose answer quality
+                 Bad answer
+                     │
+             ┌───────┴────────┐
+             │                │
+        Retrieval bad      Generation bad
+             │                │
+       Recall@K low       Hallucination
+       Precision low      Instruction failure
+       MRR low            Poor reasoning
+             │
+      ┌──────┴──────┐
+      │             │
+ Embeddings      Reranker
+ Chunking        top_k
+ Metadata        filters
 
+#### NOTE - For almost every AI system, think:
 
+                 ┌──────────────┐
+                 │   BUSINESS   │
+                 │ Task Success │
+                 │     ROI      │
+                 └──────┬───────┘
+                        │
+                 ┌──────▼───────┐
+                 │    QUALITY   │
+                 │ Correctness  │
+                 │ Groundedness │
+                 │  Relevance   │
+                 └──────┬───────┘
+                        │
+                 ┌──────▼───────┐
+                 │   RETRIEVAL  │
+                 │ Recall@K     │
+                 │ Precision@K  │
+                 │ MRR / NDCG   │
+                 └──────┬───────┘
+                        │
+                 ┌──────▼───────┐
+                 │   INFERENCE  │
+                 │ TTFT         │
+                 │ Tokens/sec   │
+                 │ P95/P99      │
+                 └──────┬───────┘
+                        │
+                 ┌──────▼───────┐
+                 │ INFRA / DATA │
+                 │ GPU          │
+                 │ Drift        │
+                 │ Errors       │
+                 │ Cost        │
+                 └──────────────┘

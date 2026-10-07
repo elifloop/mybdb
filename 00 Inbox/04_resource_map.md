@@ -16,6 +16,6 @@
 	- vslm from scratch - prepared training data -> next step using chatgpt
 
 ### FDE ###
--> syll - just gsk work
+-> syll - just gsk work + 
 -> resouces  - https://www.youtube.com/playlist?list=PLangBM27OtEA
 -> applied - at work

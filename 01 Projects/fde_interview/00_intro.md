@@ -1,4 +1,11 @@
 
+## Section - 0 - todos
+
+- HL concepts in detail - add to `03 Knowledge`
+- apply langraph to aim+ 
+- apply streaming to aim+ 
+- <s>make a metrics table</s>
+- 
 ## Section - 1 - RAG
 
 ### HL components
@@ -22,21 +29,20 @@
 
 ### HL components
 
-- Random Forest
-- LightGBM
-- XGBoost
-- CNN
-- temporal CNN
+-  [[Random Forest]]
+- [[LightGBM]] 
+- [[XGBoost]]
+- [[CNN]]
+- [[TCN]]
 
 ### Application 🈸
 
 * Sales Panel forecasting (TCN)
-* Cx Segmentation - growth (RF) + initiation (LightGBM)
+* Cx Segmentation - growth (RF) + initiation (LightGBM) - [[01_OpEngine]]
 * Cx propensity  - (XGBoost)
 * Image classification - (CNN)
 
-
-## My Intro
+## Section - 3 - My Intro
 
 I’m Harsh. I’m currently a Principal AI Engineer at GSK, where I work primarily on building and productionizing AI and ML systems end to end.
 
@@ -52,4 +58,3 @@ gsk
 volvo 
 - customer segmentation using xgb
 - cnn image based dataset
-- 
