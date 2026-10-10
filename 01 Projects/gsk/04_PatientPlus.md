@@ -1,4 +1,4 @@
-# 99 · Knowledge Base — Core Concepts for Building an App Like Patient+
+# Knowledge Base — Core Concepts for Building an App Like Patient+
 
 > A concept-by-concept primer for engineers who want to build a system like Patient+ (a
 > streaming, multi-agent, RAG-backed analytics backend). Each concept has: **what it is**, **why it
@@ -492,6 +492,106 @@ flowchart TD
     K8S --> F
     AG --> SBX
 ```
+
+## 7. kloop
+
+### Purpose
+
+`kloop` is the repository's outer optimization loop for the forecasting stack. It does not replace the TCN model itself; instead, it searches the experimental space around model specifications and training configurations, scores each candidate, and iteratively refines the best-performing arms.
+
+The loop sits above the core trainer and is designed for a practical production workflow: start from a small set of candidate configurations, run them in parallel or serially, inspect the held-out results, prune weaker variants, and propose the next generation of hyperparameters or cluster-level specifications.
+
+### Runtime model
+
+The operational loop is implemented in the `kloop` package, with the primary entry point at `kloop/__main__.py`:
+
+```bash
+python -m kloop --dry-run
+python -m kloop --no-llm --max-iterations 5 --arms 4
+python -m kloop --launch-databricks --wheel-path /Shared/nbc/wheel/sell_out_forecast.whl
+```
+
+The CLI exposes a few key controls:
+
+- `--arms`: number of initial candidate arms to seed
+- `--max-iterations`: number of generations before the loop stops
+- `--concurrency`: limit on parallel runner work
+- `--rmse-max`: primary convergence gate based on the worst-cluster `test.rmse`
+- `--dry-run`: synthetic, fully local execution without Databricks or MLflow
+- `--no-llm`: disables the OpenAI/Azure OpenAI proposer and forces the rule-only path
+- `--launch-databricks`: submits a fire-and-forget orchestrator job and exits immediately
+
+### Lifecycle of a loop run
+
+A loop run follows this pattern:
+
+1. `Controller.seed_arms()` creates an initial population of candidate `Arm` objects.
+2. Each arm encodes two cluster configurations, which are validated by `config_schema.validate_proposal()` before training.
+3. `runner.run_arms()` executes the training jobs and returns metrics for each arm.
+4. `Controller._converged()` checks the highest-priority stop condition: a valid held-out `test.rmse` below the configured threshold.
+5. The weak arms are pruned with the leaderboard scorer, and the best survivors generate child proposals.
+6. The proposer creates a new specification/config pair using either a rule-based heuristic or an LLM-guided mutation when credentials are available.
+
+The loop is intentionally transport-agnostic: the same controller logic can run with a synthetic dry-run runner, a Databricks notebook job runner, or a custom runner injected for tests or debugging.
+
+### Components
+
+| Component | Role |
+|---|---|
+| `kloop/controller.py` | Main orchestration loop, generation loop, pruning, convergence checks, report writing |
+| `kloop/databricks_runner.py` | Executes training jobs locally or via Databricks notebooks and collects metrics |
+| `kloop/dry-run` path | `DryRunRunner` returns synthetic, deterministic results so the loop can be tested without external services |
+| `kloop/analyzer.py` | Evaluates per-run quality, decodes failures, and computes rule-based next-step proposals |
+| `kloop/proposer.py` | Wraps the LLM-backed proposer and the safe rule-only fallback |
+| `kloop/leaderboard.py` | Ranks arms by quality and tracks the best candidate across generations |
+| `kloop/scoring.py` | Normalizes and scores evaluation payloads into comparable metrics |
+| `kloop/orchestration.py` | A single-track orchestration abstraction used by the Databricks-managed loop |
+
+### Rule-based and LLM-assisted proposals
+
+The analysis layer first computes a grounded baseline proposal from the current run metrics and the permitted configuration bounds. The fallback proposal is deterministic and safe: it respects the schema and clamps any invalid values. When `OPENAI_API_KEY` or Azure OpenAI environment variables are present, the LLM proposer can augment that rule-based suggestion, but the final output is always revalidated before the next training generation begins.
+
+This design matters because it ensures the optimization loop remains stable even when external AI services fail or return malformed output. In practice, the repo prefers a layered system:
+
+- rule proposal first
+- LLM augmentation if available
+- fallback to the validated rule result if the LLM path is unavailable or invalid
+
+### Databricks execution model
+
+The repository ships the wheel with the training loop code and then uses notebooks in `kloop/databricks/` to run the work inside Databricks. The fire-and-forget CLI flow does the following:
+
+- syncs the trainer/analyzer/orchestrator notebooks to workspace paths
+- submits a single orchestrator notebook job
+- sets experiment names for the two cluster paths
+- exits without waiting for the whole multi-iteration loop to finish
+
+This is the intended operational pattern for long-running tuning loops: the GitHub workflow or a user invokes the orchestrator once, and Databricks handles the child jobs, logs the runs, and records the results back into MLflow and the local report directory.
+
+### Output artifacts
+
+Each loop run writes structured outputs for investigation and follow-up:
+
+- timestamped report files under `reports/training-loop/`
+- `candidate_metrics` summary output for the current candidate set
+- per-arm metric records and rank ordering
+- MLflow experiment metadata for the training jobs that produced each candidate
+
+The important distinction in this package is that `kloop` is a hyperparameter exploration layer around the model, not the model itself. That separation keeps the TCN trainer reusable, makes the tuning loop testable, and enables remote execution without locking the logic to a single runtime or infrastructure provider.
+
+### Operational guidance
+
+For normal local work, the safest path is:
+
+```bash
+python -m kloop --dry-run --max-iterations 3 --arms 3 --no-llm
+```
+
+For a real Databricks launch, use the wheel path and the orchestrator flow, while keeping `--no-llm` available for deterministic, low-dependency operation when LLM access is not configured. This makes the loop robust in both development and production contexts, while still allowing AI-assisted proposal generation when the environment supports it.
+
+
+
+
 
 **Start building in this order:** async FastAPI skeleton (#1, #2) → a single LLM call behind an
 abstraction (#8) with externalised prompts (#7) → add retrieval (#6) → wrap it in a LangGraph node
