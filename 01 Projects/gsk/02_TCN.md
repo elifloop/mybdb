@@ -532,3 +532,139 @@ This repository uses a multi-series TCN with:
 - a linear multi-step forecast head
 
 Under the current default configuration, the model sees 36 time steps per sample, has a receptive field of 29 steps, and predicts the next 3 monthly values.
+
+
+## 4. CI/CD
+
+### Existing workflows
+
+| Workflow | Trigger | Purpose |
+|---|---|---|
+| `deploy-uat.yml` | Merged PR into `uat` or manual dispatch | Builds the wheel, archives existing Databricks workspace wheels, and uploads the new wheel to UAT. |
+| `deploy-prod.yml` | Merged PR from `uat` into `main` or manual dispatch | Builds and uploads the wheel to the production Databricks workspace, archiving prior wheels. |
+| `ai-training-loop.yml` | Manual dispatch; optional nightly schedule is commented out | Resolves the deployed wheel, submits the Databricks orchestrator, and records launch metadata. |
+| `agentics-maintenance.yml` and AI workflow metadata/locks | Repository automation | Supports repository-specific AI engineering maintenance; the exact operational behavior is defined in the workflow files and companion metadata. |
+
+There is no conventional always-on build/test workflow named `ci.yml` in the repository. The deployment workflows build the package but do not define a general pytest gate in the inspected steps.
+
+### CI/CD pipeline
+
+```text
+Pull request merge to uat
+  -> GitHub Actions UAT environment
+  -> Python 3.11 + build tooling + Databricks CLI
+  -> build wheel
+  -> archive prior /Shared/nbc/wheel files
+  -> upload new wheel
+
+Pull request merge uat -> main
+  -> GitHub Actions production environment
+  -> Python 3.11 + build tooling + Databricks CLI
+  -> build wheel
+  -> archive prior /Shared/nbc/wheel files
+  -> upload new wheel
+
+Manual AI training-loop dispatch
+  -> install package and kloop extras
+  -> resolve latest workspace wheel
+  -> launch `python -m kloop --launch-databricks`
+  -> Databricks runs trainer/analyzer/orchestrator notebooks
+  -> MLflow experiments and GitHub launch artifact/summary
+```
+
+### Deployment and environments
+
+UAT deployment uses the `uat` GitHub environment and requires a configured `UAT_RUNNER_LABEL`; it validates workspace access and can temporarily manage a Databricks IP access list when enabled. Production uses the `prod` GitHub environment and the hosted Ubuntu runner path shown in the workflow. Both flows use Databricks workspace wheel deployment rather than the deprecated bundle deployment targets.
+
+The Makefile retains `validate`, `deploy`, `run`, and `run-de` compatibility stubs that intentionally fail with a deprecation message. The supported wheel path is `python -m build --wheel` followed by `make deploy-wheel PROFILE=...` when Databricks CLI credentials and access are available.
+
+### Secrets
+
+Workflow secret names are `DATABRICKS_HOST`, `DATABRICKS_TOKEN`, `DATABRICKS_CLIENT_ID`, and `DATABRICKS_CLIENT_SECRET`. Values are supplied by GitHub environments and are not committed.
+
+## 5. Interview
+
+Answers are labeled `[Implemented]`, `[Observed]`, `[Inferred]`, or `[Recommended]` to distinguish repository evidence from interpretation or future work.
+
+### Architecture
+
+1. **Why is the public API DataFrame-driven rather than an HTTP service?** `[Implemented]` `SellOutForecaster` accepts event DataFrames and returns fit/prediction/backtest objects; no web server or API route exists.
+2. **How does one training request move through the system?** `[Implemented]` Feature preparation creates windows and splits, the trainer fits the TCN, MLflow receives metrics/artifacts/model output, and prediction reloads the model URI plus preprocessing artifacts.
+3. **Why is `kloop` separate from the core forecaster?** `[Observed]` The package exposes the core modules from `src/`, while `kloop` owns arms, proposals, Databricks execution, scoring, and reports.
+4. **What is the deployment unit?** `[Implemented]` A Python wheel containing the flat `src` modules and `kloop` package is built and uploaded to a Databricks workspace path.
+5. **What would you inspect first at 10x data volume?** `[Recommended]` Profile feature construction, window materialization, PyTorch batch throughput, MLflow artifact volume, and Databricks job concurrency before changing architecture.
+
+### AI / ML
+
+1. **Why use a TCN for this forecasting problem?** `[Implemented]` The model uses causal dilated convolutions and residual blocks to capture temporal context for multi-step forecasts across many series.
+2. **How is leakage constrained?** `[Implemented]` Windows are split chronologically, convolutions are causal, and the README recommends cutoff backtests for live-like evaluation.
+3. **How are series-specific effects represented?** `[Implemented]` A learned series-ID embedding is concatenated with pooled temporal features before the forecast head.
+4. **What does Optuna tune?** `[Implemented]` Learning rate, batch size, kernel size, dropout, embedding size, weight decay, Huber delta, loss asymmetry, and channel presets are sampled.
+5. **How would you evaluate model quality?** `[Implemented]` The repository logs validation/test metrics and the loop gates on worst-cluster `test.rmse`; `[Recommended]` add explicit dataset/version tracking and forecast interval or calibration checks for production decisions.
+6. **What is the role of the LLM proposer?** `[Implemented]` `kloop` can use an LLM proposer to create child configurations; a rule-only path and `--no-llm` option exist. It is not the forecaster itself.
+
+### Backend / Systems
+
+1. **Is the training loop synchronous?** `[Implemented]` The GitHub workflow launches the Databricks orchestrator fire-and-forget; the loop itself coordinates remote jobs and reads MLflow results.
+2. **How does the controller behave without external services?** `[Implemented]` `ControllerConfig.dry_run` selects `DryRunRunner`, and `use_llm=False` uses rule-only proposals.
+3. **What state is persisted by a loop run?** `[Implemented]` Timestamped reports, candidate metrics, arm results, and MLflow experiment/run identifiers are written.
+4. **How are failed arms handled?** `[Observed]` The controller records missing results as an error and ranks successful arms; `[Recommended]` define retry, timeout, and partial-cluster policies explicitly for production.
+5. **What is the main likely bottleneck?** `[Inferred]` Training and feature/window materialization are more likely to dominate than the lightweight controller; profiling is needed before optimization.
+
+### Infrastructure
+
+1. **How is the wheel promoted?** `[Implemented]` UAT and prod workflows build it, archive existing workspace wheels, and upload the new artifact to `/Shared/nbc/wheel`.
+2. **How are credentials provided?** `[Implemented]` GitHub environment secrets configure Databricks CLI profiles; values are not stored in the repository.
+3. **Why does the UAT workflow require a runner label?** `[Implemented]` It expects a self-hosted runner in an allowlisted Azure network unless the optional IP ACL management path is enabled.
+4. **What remains from the old Databricks deployment model?** `[Implemented]` `databricks.yml` and Makefile compatibility targets remain, but repository instructions explicitly deprecate bundle commands.
+
+### Production engineering
+
+1. **What happens if MLflow is unavailable?** `[Recommended]` Treat training persistence as a failed run, surface the tracking error, and avoid reporting a model as deployable without verified artifacts.
+2. **How would you make model promotion safer?** `[Recommended]` Add an explicit evaluation/promotion gate, immutable wheel/model metadata, and a rollback selection for archived wheels.
+3. **How is reproducibility addressed?** `[Implemented]` Packaging, Docker, seeds, logged configs, scalers, feature lists, and tuning summaries provide reproducibility inputs; `[Recommended]` pin all transitive dependencies and record dataset versions.
+4. **What security issue exists in the optional Jupyter service?** `[Implemented]` It starts without a token or password, so it should remain local/development-only and not be exposed beyond a trusted environment.
+
+### Observability
+
+1. **What is currently observable?** `[Implemented]` MLflow parameters/metrics/artifacts, timestamped loop reports, candidate metrics, GitHub step summaries, and an uploaded launch-info artifact.
+2. **How does the loop select a stopping signal?** `[Implemented]` It checks held-out `test.rmse` and uses the worst cluster value when enriching live results; `gt_30_ratio` is display-only in the workflow comments/controller logic.
+3. **How would latency or resource regressions be diagnosed?** `[Recommended]` Add per-stage timings for feature generation, data loading, training, model logging, and Databricks job startup, plus CPU/memory/GPU telemetry.
+
+### Failure modes and tradeoffs
+
+1. **What is the tradeoff of global feature scaling and per-series target scaling?** `[Implemented]` The pipeline uses one global feature scaler and one target scaler per series, simplifying shared modeling while retaining series-level target normalization; cross-series distribution effects should be validated.
+2. **What is the risk of using same-history fit and predict for evaluation?** `[Implemented]` The README explicitly says it is not an unbiased live-performance estimate; cutoff backtests are the supported alternative.
+3. **What happens when no arm reaches the RMSE threshold?** `[Implemented]` The loop returns `BUDGET_EXHAUSTED` after the iteration budget and still writes reports/candidate output when a best arm exists.
+4. **What is the tradeoff of optional LLM proposals?** `[Observed]` They may broaden search but add an external dependency; the repository provides a deterministic rule-only path for operation without an LLM.
+
+### Forward deployed engineering
+
+1. **How would you deploy this for a customer with no Databricks?** `[Recommended]` Use the documented Docker/wheel runtime with local or hosted MLflow, then add customer-specific storage and scheduling adapters; the repository does not implement that path today.
+2. **What customer inputs are required?** `[Implemented]` The caller supplies series ID, time, value, optional exogenous columns, frequency, date format, and training configuration through `ForecastSpec` and `TrainConfig`.
+3. **How would you onboard a new data source?** `[Recommended]` Map source fields into the DataFrame contract, validate frequency and history length, run cutoff backtests, and compare artifacts/metrics before promotion.
+4. **What would you explain to a customer about model quality?** `[Implemented]` Distinguish forecast generation from unbiased evaluation and report held-out/backtest metrics by cutoff and series/cluster where available.
+5. **What is the first production gap to close?** `[Inferred]` The repository has deployment and tracking mechanics but no general CI test gate, service API, or documented automated model promotion gate.
+
+## 6. XP
+
+### AI Researcher
+
+- Designed and implemented a PyTorch Temporal Convolutional Network for multi-series, multi-step sell-out forecasting.
+- Developed causal dilated residual blocks with series-ID embeddings and a configurable forecast head.
+- Built feature engineering and windowing for lag, rolling, momentum, slope, ratio, EMA, and outlier-aware signals.
+- Integrated Optuna-based hyperparameter search across model capacity, optimization, regularization, and asymmetric loss settings.
+- Implemented chronological backtesting and rolling cutoff evaluation to separate forecast generation from live-like model assessment.
+- Added MLflow logging for metrics, model artifacts, scalers, feature metadata, tuning summaries, and selected configurations.
+- Developed an outer arm-based training loop with leaderboard scoring, pruning, rule proposals, and optional LLM-assisted configuration proposals.
+
+### Forward Deployed Staff Engineer
+
+- Built a packaged Python forecasting framework with a stable DataFrame API for customer-specific series schemas and training configurations.
+- Productionized wheel-based Databricks delivery with UAT and production GitHub Actions workflows, workspace archiving, and environment-scoped authentication.
+- Created a multi-stage Docker runtime and Docker Compose development workflow for reproducible local training and artifact mounting.
+- Implemented Databricks training-loop orchestration that coordinates remote trainer/analyzer jobs and reports MLflow experiment identifiers.
+- Added dry-run and rule-only execution paths so orchestration logic can be exercised without Databricks or LLM dependencies.
+- Integrated preprocessing and model artifacts needed to reload a selected MLflow model for batch prediction.
+- Established explicit operational boundaries for deprecated bundle commands while retaining compatibility artifacts and supported wheel deployment paths.
+
