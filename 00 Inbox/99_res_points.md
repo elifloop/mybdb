@@ -1,3 +1,5 @@
+# Section 1 - Points
+
 - **Architected a token-level streaming inference pipeline** for a production RAG/agentic LLM system using FastAPI Server-Sent Events (SSE) and `asyncio.Queue`-based producer–consumer decoupling, cutting perceived response latency (time-to-first-token) from multiple seconds to near-instant.
 
 - **Built a provider-agnostic streaming abstraction** over Azure OpenAI (`stream=True`) and Google Gemini (`streamGenerateContent`), normalizing heterogeneous chunk formats behind a single interface so the multi-agent graph consumes tokens without provider-specific code.
@@ -27,3 +29,27 @@
 - Built a robust, end-to-end transfer-learning pipeline using BERT (Hugging Face Transformers) for enterprise multiclass text classification—standardizing automated data preprocessing, label indexing, class-balance mitigation, and rigorous train/validation/test evaluation methodologies while ensuring reproducible model artifact versioning and dependency compatibility.
 
 - Architected an enterprise RAG + multi-agent chatbot used by medical business teams to deliver high-trust answers via inline source citations leveraging Glean, brandwatch social listening etc. using orchestrating retrieval, query decomposition, intent classification, and answer synthesis via LangGraph agent workflows, with real-time token-by-token response streaming (FastAPI Server-Sent Events) and automatic cross-provider fallback between Azure OpenAI (GPT) and Google Gemini with exponential-backoff retries (Tenacity), semaphore-based concurrency control/backpressure, timeout handling.
+
+# Section 2 - Example JDs 
+
+About the job
+
+Job DescriptionAs an LLM Inference Engineer on our AI Platform team, you’ll remove the compute-scaling bottleneck for production LLMs. Your job is to make frontier-model inference fast, efficient, reliable, and observable—the “last mile” from GPUs to APIs that products depend on. This role sits at the intersection of HPC, GPU systems, and MLOps, and requires strong intuition for how model architecture, runtimes, and hardware interact.What You’ll Do
+Own production inference: Take models from handoff to production-grade serving, including release engineering, capacity planning, cost optimization, and incident response.
+Tune inference performance: reduce end-to-end latency and increase throughput across real production traffic patterns.
+Optimize runtimes and servers: Scale inference across heterogeneous GPU fleets; optimize stacks such as vLLM, Triton, and related components (e.g., schedulers, KV cache, batching, memory).
+Benchmark and measure: Build benchmarking suites, metrics, and tooling to quantify latency, throughput, GPU utilization, memory, and cost.
+Reliability and observability: Improve monitoring, tracing, and alerting; participate in incident response and postmortems to harden systems.
+Apply and ship new optimizations: Evaluate research and implement pragmatic inference optimizations (e.g., quantization, paging, kernel/runtimes improvements).
+Partner with cross-functional teams: Work with data science and product teams to translate business requirements into performance and availability SLOs.
+What We’re Looking For
+8+ years of strong development experience
+Experience deploying and operating LLM inference services in production.
+Strong production coding skills in Python plus Go or Rust (systems-level implementation and debugging).
+Experience with ML frameworks and runtimes: PyTorch, vLLM, SGLang (and/or TensorRT).
+Knowledge of GPU architecture and performance (profiling, memory bandwidth/latency tradeoffs); CUDA/kernel programming is a strong plus.
+Solid understanding of LLM inference and optimization techniques: continuous batching, KV cache management, quantization, speculative decoding (nice-to-have), etc.
+3+ years hands-on experience in performance optimization and systems programming for AI/ML workloads.
+Demonstrated ability to deliver measurable production improvements (e.g., 2X throughput, lower p95/p99 latency, reduced GPU cost).
+Proven skill in root-cause analysis: finding bottlenecks across model, runtime, networking, and infrastructure.
+Demonstrated proficiency in applying autonomous AI coding agents to speed up software delivery pipelines. This includes advanced prompting and careful human-in-the-loop code review to improve development speed and code accuracy.
