@@ -32,6 +32,8 @@
 
 # Section 2 - Example JDs 
 
+## eBay
+
 About the job
 
 Job DescriptionAs an LLM Inference Engineer on our AI Platform team, you’ll remove the compute-scaling bottleneck for production LLMs. Your job is to make frontier-model inference fast, efficient, reliable, and observable—the “last mile” from GPUs to APIs that products depend on. This role sits at the intersection of HPC, GPU systems, and MLOps, and requires strong intuition for how model architecture, runtimes, and hardware interact.What You’ll Do
@@ -53,3 +55,47 @@ Solid understanding of LLM inference and optimization techniques: continuous bat
 Demonstrated ability to deliver measurable production improvements (e.g., 2X throughput, lower p95/p99 latency, reduced GPU cost).
 Proven skill in root-cause analysis: finding bottlenecks across model, runtime, networking, and infrastructure.
 Demonstrated proficiency in applying autonomous AI coding agents to speed up software delivery pipelines. This includes advanced prompting and careful human-in-the-loop code review to improve development speed and code accuracy.
+
+
+## Sarvam
+
+About the job
+About Sarvam
+
+Sarvam is building the bedrock of Sovereign AI for India. The company is developing India’s full-stack sovereign AI platform, building across research, models, infrastructure and applications with a singular focus on making AI genuinely work for India. Sarvam works with leading enterprises and public institutions and is backed by Lightspeed, Peak XV, and Khosla Ventures. Sarvam partners with India’s leading brands, including Tata Capital, SBI Life, CRED, IDFC, and LIC.
+
+About The Role
+
+You will own the infrastructure that our next family of foundational models is trained on. This is a deep systems role: distributed training at scale, parallelism strategies, GPU kernel work, throughput and stability optimization, and the unglamorous reliability engineering that determines whether a frontier training run actually finishes.
+
+The bar is high. A bad MFU number, a slow data loader, a switch flap — these are problems whose cost is measured in weeks and millions of dollars. You will be expected to find them before they happen, and to fix them fast when they do.
+
+What You’ll Do
+
+Build, maintain, and continually push the limits of our distributed training stack across large GPU clusters. 
+Design and implement parallelism strategies — data, tensor, pipeline, sequence, expert — and reason about which combinations make sense for which architectures and which scales. 
+Profile and optimize end-to-end training throughput: kernel performance, communication overlap, memory layout, checkpointing, data loading. 
+Write and tune custom GPU kernels (CUDA, Triton) where off-the-shelf is leaving performance on the table. 
+Own the reliability of long-running training jobs — fault tolerance, checkpoint integrity, deterministic restarts, automated detection of slow nodes and silent corruption. 
+Partner closely with researchers to make sure architectural ideas can actually be trained efficiently, and with the data team to keep the pipeline from being the bottleneck. 
+
+What We’re Looking For
+
+BS or MS in Computer Science or a closely related technical field (or equivalent demonstrated experience). 
+3+ years of experience building ML training infrastructure or large-scale distributed systems. Exceptional early-career candidates with a strong systems background will be considered. 
+Hands-on experience training large models with distributed training frameworks — Megatron-LM, DeepSpeed, FSDP, NeMo, or equivalent. You should have been on-call for a real pretraining run. 
+Deep working knowledge of GPU architecture, the CUDA programming model, and standard tools for profiling GPU workloads (Nsight, PyTorch profiler, etc.). 
+Strong PyTorch internals knowledge. You're comfortable reading and modifying low-level training code, not just using high-level APIs. 
+Meaningful open-source contributions in the training infrastructure ecosystem — Megatron, DeepSpeed, PyTorch, vLLM, Triton, NCCL, or similar. 
+
+Bonus Points
+
+Custom CUDA or Triton kernel development with measurable wins on real workloads. 
+Direct experience training models at 10B+ parameters or on 1000+ GPU clusters. 
+Familiarity with cluster orchestration and job scheduling (Slurm, Kubernetes) at scale. 
+Experience with mixed precision (BF16, FP8), quantization-aware training, or other numerical work that has shown up in production training runs. 
+First-author papers or technical reports on training systems, scaling, or model efficiency. 
+
+Why this role?
+
+Frontier model training is one of the hardest systems problems in the world right now, and most of the people doing it well sit at a small handful of labs. You will be doing the same work, with the same autonomy, and your impact will be visible in every model Sarvam ships.
