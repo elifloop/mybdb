@@ -1,16 +1,29 @@
 - **Architected a token-level streaming inference pipeline** for a production RAG/agentic LLM system using FastAPI Server-Sent Events (SSE) and `asyncio.Queue`-based producer–consumer decoupling, cutting perceived response latency (time-to-first-token) from multiple seconds to near-instant.
+
 - **Built a provider-agnostic streaming abstraction** over Azure OpenAI (`stream=True`) and Google Gemini (`streamGenerateContent`), normalizing heterogeneous chunk formats behind a single interface so the multi-agent graph consumes tokens without provider-specific code.
+
 - **Designed a client-disconnect cancellation mechanism** that propagates `asyncio` cancellation into in-flight LLM HTTP calls to abort generation on abandonment, **reducing wasted token/compute spend** while safely persisting partial state to the database.
+
 - **Integrated streaming into a LangGraph multi-agent orchestration flow**, threading a shared event queue through graph state to emit real-time `status`, `token`, and `citation` events, giving users progressive feedback across retrieval, reasoning, and synthesis stages.
+
 - **Hardened the streaming transport for production**, adding SSE keep-alive heartbeats and anti-buffering headers (`X-Accel-Buffering: no`) to survive proxy/load-balancer idle timeouts, plus a sentinel-based completion protocol for deterministic stream termination.
+
 - **Deployed a production LLM inference service on Azure Kubernetes Service (AKS)**, containerizing a FastAPI application with a hardened, multi-stage Docker image (non-root user, dropped Linux capabilities, `seccompProfile: RuntimeDefault`) aligned to container security best practices.
+
 - **Implemented keyless authentication with Azure Workload Identity + Managed Identity**, eliminating stored credentials in the cluster and letting pods securely access Azure OpenAI, Key Vault, and SQL without secrets in code or environment.
+
 - **Configured Horizontal Pod Autoscaling (2–8 replicas)** on CPU/memory targets with tuned scale-up/scale-down stabilization windows, enabling the GenAI backend to elastically absorb variable LLM traffic while controlling compute cost.
+
 - **Engineered zero-downtime rolling deployments** with `RollingUpdate` (25% maxSurge/maxUnavailable) plus three-tier startup/readiness/liveness probes on a `/health` endpoint, ensuring traffic only reaches fully-initialized pods during releases.
+
 - **Built a multi-environment Azure DevOps CI/CD pipeline (DEV/UAT/PROD)** with automated pre-deployment validation, token-replacement config templating, and gated environment approvals — auto-deploying to DEV on successful builds while requiring manual promotion to production.
+
 - **Tuned Kubernetes and Uvicorn for long-lived streaming (SSE) workloads**, setting extended keep-alive/graceful-shutdown timeouts and disabling proxy buffering so token-by-token LLM responses survive load-balancer idle limits without dropped connections.
+
 - Built an end-to-end RAG pipeline over multilingual healthcare insights—denormalizing SQL star-schema data into retrieval-ready documents, generating Azure OpenAI text-embedding-3-small (1536-dim) embeddings with tiktoken-based tokenization/context management and Unicode normalization, and serving hybrid (vector + BM25) retrieval via an Azure AI Search HNSW/cosine ANN index with RRF fusion—scaled through Dask parallel batch inference, delta/incremental embedding, checkpointing, and OAuth2 token-refresh with rate-limit backoff, and enriched by upstream NER, GPT-3.5 summarization, and aspect-based sentiment as filterable metadata.
 
 - Developed RAG pipeline using NER to extract biomedical entities using azure-ai-textanalytics & scispacy, running aspect-based sentiment alongside multi-class classification using a fine-tuned BERT model, and reconciling model-predicted vs. gold entities through fuzzy matches (fuzzywuzzy), with the resulting entities and sentiment surfaced as filterable metadata in an Azure AI Search vector index.
   
 - Built a robust, end-to-end transfer-learning pipeline using BERT (Hugging Face Transformers) for enterprise multiclass text classification—standardizing automated data preprocessing, label indexing, class-balance mitigation, and rigorous train/validation/test evaluation methodologies while ensuring reproducible model artifact versioning and dependency compatibility.
+
+- Architected an enterprise RAG + multi-agent chatbot used by medical business teams to deliver high-trust answers via inline source citations leveraging Glean, brandwatch social listening etc. using orchestrating retrieval, query decomposition, intent classification, and answer synthesis via LangGraph agent workflows, with real-time token-by-token response streaming (FastAPI Server-Sent Events) and automatic cross-provider fallback between Azure OpenAI (GPT) and Google Gemini with exponential-backoff retries (Tenacity), semaphore-based concurrency control/backpressure, timeout handling.
