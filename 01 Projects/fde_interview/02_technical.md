@@ -26,13 +26,15 @@ RecursiveCharacterTextSplitter.from_language(...): adapts recursive separators f
 - Exponential backoff & retries ->
 - we manipulate wait times here using the formula 
 
-Backoff Type	Core Formula (No Jitter)	Formula with Full Jitter
-Exponential	\(\min(\text{Base} \times B^{\text{attempt}}, \text{Max})\)	\(\text{Random}(0, \min(\text{Base} \times B^{\text{attempt}}, \text{Max}))\)
-Linear	\(\min(\text{Base} + (\text{Step} \times \text{attempt}), \text{Max})\)	\(\text{Random}(0, \min(\text{Base} + (\text{Step} \times \text{attempt}), \text{Max}))\)
-Constant / Fixed	\(\text{Base}\)	\(\text{Base} + \text{Random}(-\text{Jitter}, \text{Jitter})\)
-Polynomial / Quadratic	\(\min(\text{Base} \times \text{attempt}^2, \text{Max})\)	\(\text{Random}(0, \min(\text{Base} \times \text{attempt}^2, \text{Max}))\)
-Fibonacci	\(\min(\text{Base} \times \text{Fib}(\text{attempt}), \text{Max})\)	\(\text{Random}(0, \min(\text{Base} \times \text{Fib}(\text{attempt}), \text{Max}))\)
-Decorrelated Jitter	N/A (Inherent jitter)	\(\min(\text{Max}, \text{Random}(\text{Base}, \text{Previous Delay} \times 3))\)![Uploading image.png…]()
+
+| **Backoff Type** | **Core Formula (No Jitter)** | **Formula with Full Jitter** |
+|---|---|---|
+| **Exponential** | `min(Base * (B ^ attempt), Max)` | `Random(0, min(Base * (B ^ attempt), Max))` |
+| **Linear** | `min(Base + (Step * attempt), Max)` | `Random(0, min(Base + (Step * attempt), Max))` |
+| **Constant / Fixed** | `Base` | `Base + Random(-Jitter, Jitter)` |
+| **Polynomial / Quadratic** | `min(Base * (attempt ^ 2), Max)` | `Random(0, min(Base * (attempt ^ 2), Max))` |
+| **Fibonacci** | `min(Base * Fib(attempt), Max)` | `Random(0, min(Base * Fib(attempt), Max))` |
+| **Decorrelated Jitter** | *N/A (Inherent jitter)* | `min(Max, Random(Base, Previous_Delay * 3))` |
 
 
 
