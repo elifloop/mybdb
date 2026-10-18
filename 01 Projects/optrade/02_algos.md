@@ -12,7 +12,9 @@ Algo4
 dii and fii correlation with future growth
 
 Algo5
-nz aoob vs semi pro vs expert vs god - example a noob thinks what goes down someday comes up, …, god makes decision solely on data, -> maybe overthinking doesn’t help at all or maybe it is worth it
+noob vs semi pro vs expert vs god - example a noob thinks what goes down someday comes up, …, god makes decision solely on data, -> maybe overthinking doesn’t help at all or maybe it is worth it
 
 Algo6 
 vectors based adstock - weibull and geometric
+
+Algo7

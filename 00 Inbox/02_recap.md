@@ -6,8 +6,7 @@
 -> tensor & kernel puzzles [ON HOLD]
 
 ### optrade ###
--> qwen_ft - see if vslm data can be repurposed
-->  vslm from scratch - prepared training data -> next step review data
+-> bcg web crawler
 
 ### FDE ###
 -> fde interview - rag etc. going on 
