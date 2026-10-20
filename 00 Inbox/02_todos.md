@@ -6,7 +6,7 @@
 -> tensor & kernel puzzles [ON HOLD]
 
 ### optrade ###
--> bcg web crawler
+-> vectorize and entity extraction
 
 ### FDE ###
 -> fde interview - rag etc. going on 

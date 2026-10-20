@@ -1,0 +1,6 @@
+- [x] ohlc pipeline
+- [x] bcg pipeline
+- [ ] generalize web crawler implementation
+- [ ] vectorize bcg data
+- [ ] mine other sources of data
+- [ ] perform hyp testing
