@@ -2,5 +2,7 @@
 - [x] bcg pipeline
 - [ ] generalize web crawler implementation
 - [ ] vectorize bcg data
+	- [ ] ran into issue need to restart
+	- [ ] get to know what is really going on
 - [ ] mine other sources of data
 - [ ] perform hyp testing
