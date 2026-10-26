@@ -60,11 +60,11 @@ $$
 
 where:
 
-- \(y_t\): outcome in time period \(t\), such as sales or revenue.
-- \(x_{m,t}\): execution for media channel \(m\), such as spend, impressions, or GRPs.
-- \(\beta_0\): intercept.
-- \(\beta_m\): estimated association between channel \(m\) and the outcome, conditional on the other included variables.
-- \(\epsilon_t\): unexplained component.
+- $y_t$: outcome in time period $t$, such as sales or revenue.
+- $x_{m,t}$: execution for media channel $m$, such as spend, impressions, or GRPs.
+- $\beta_0$: intercept.
+- $\beta_m$: estimated association between channel $m$ and the outcome, conditional on the other included variables.
+- $\epsilon_t$: unexplained component.
 
 A more realistic model includes non-media drivers and time patterns:
 
@@ -79,7 +79,7 @@ y_t =
 \epsilon_t
 $$
 
-Here, \(z_{j,t}\) can include price, promotions, distribution, holidays, competitor activity, macroeconomic conditions, or other appropriate controls.
+Here, $z_{j,t}$ can include price, promotions, distribution, holidays, competitor activity, macroeconomic conditions, or other appropriate controls.
 
 ### Why the simple model is not usually enough
 
@@ -127,7 +127,7 @@ OLS is a useful baseline, but standard uncertainty calculations rely on assumpti
 
 ### Regression coefficient interpretation
 
-In a simple untransformed model, \(\beta_m\) is the estimated change in outcome per one-unit increase in \(x_m\), holding other model variables fixed. For example, it might represent sales per additional thousand impressions if impressions are measured in thousands.
+In a simple untransformed model, $\beta_m$ is the estimated change in outcome per one-unit increase in $x_m$, holding other model variables fixed. For example, it might represent sales per additional thousand impressions if impressions are measured in thousands.
 
 Once media is transformed or standardized, the coefficient is no longer a direct “sales per dollar” effect. Interpret it together with the transformation, variable units, and model specification.
 
@@ -144,7 +144,7 @@ Consequences can include:
 
 Useful checks include a correlation matrix, variance inflation factors for suitable linear models, condition numbers, and sensitivity analysis across reasonable specifications. These checks identify estimation difficulty; they do not, on their own, fix it.
 
-**Ridge regression** adds an \(L_2\) penalty:
+**Ridge regression** adds an $L_2$ penalty:
 
 $$
 \hat{\boldsymbol\beta}_{ridge}
@@ -173,9 +173,9 @@ $$
 
 where:
 
-- \(x_t\): current media execution.
-- \(a_t\): current execution plus decayed past execution.
-- \(\lambda\): carryover or decay parameter.
+- $x_t$: current media execution.
+- $a_t$: current execution plus decayed past execution.
+- $\lambda$: carryover or decay parameter.
 
 Expanding the recurrence gives:
 
@@ -183,7 +183,7 @@ $$
 a_t = x_t + \lambda x_{t-1} + \lambda^2x_{t-2}+\cdots
 $$
 
-Thus, the impact of prior execution decreases geometrically with lag. A larger \(\lambda\) means slower decay.
+Thus, the impact of prior execution decreases geometrically with lag. A larger $\lambda$ means slower decay.
 
 Some implementations normalize the weights to make the transformed value a weighted average:
 
@@ -194,11 +194,11 @@ a_t
 {\sum_{s=0}^{L}w(s;\lambda)}
 $$
 
-where \(L\) is the maximum lag and \(w(s;\lambda)\) is a decay-weight function. The normalized and unnormalized forms have different scales, so coefficient values are not directly comparable across implementations.
+where $L$ is the maximum lag and $w(s;\lambda)$ is a decay-weight function. The normalized and unnormalized forms have different scales, so coefficient values are not directly comparable across implementations.
 
 ### Half-life
 
-For geometric decay, the half-life \(h\) is the number of periods at which the remaining weight is half:
+For geometric decay, the half-life $h$ is the number of periods at which the remaining weight is half:
 
 $$
 \lambda^h=0.5
@@ -206,14 +206,14 @@ $$
 h=\frac{\log(0.5)}{\log(\lambda)}
 $$
 
-For instance, if \(\lambda=0.5\), the weight halves after one period. The period must match the data frequency: a weekly model's “one period” is a week.
+For instance, if $\lambda=0.5$, the weight halves after one period. The period must match the data frequency: a weekly model's “one period” is a week.
 
 ### Adstock is not just “past spend”
 
 Adstock is a model of how media execution carries forward into outcome. Its specification requires choices about:
 
 - Data frequency: daily, weekly, or monthly.
-- Maximum lag \(L\).
+- Maximum lag $L$.
 - Decay shape, such as geometric or a more flexible distribution.
 - Whether the transformation is normalized.
 - Whether saturation is applied before or after adstock.
@@ -240,11 +240,11 @@ $$
 
 where:
 
-- \(x\geq0\): media execution, often after adstock.
-- \(ec>0\): half-saturation point; \(H(ec)=0.5\).
-- \(s>0\): slope or shape parameter.
+- $x\geq0$: media execution, often after adstock.
+- $ec>0$: half-saturation point; $H(ec)=0.5$.
+- $s>0$: slope or shape parameter.
 
-For \(s\leq1\), the function is concave. For \(s>1\), it is S-shaped: initially convex, then concave. The function is bounded between 0 and 1; a model coefficient scales its effect on the outcome.
+For $s\leq1$, the function is concave. For $s>1$, it is S-shaped: initially convex, then concave. The function is bounded between 0 and 1; a model coefficient scales its effect on the outcome.
 
 The derivative is:
 
@@ -266,7 +266,7 @@ $$
 
 is concave and can represent diminishing returns over a range. It is **not bounded**, does not have a half-saturation point, and behaves differently from a Hill curve.
 
-In the PDF, the shown values are consistent with power transforms such as \(230.1^{0.5}\approx15.17\). This suggests the worksheet is applying a power transform in that section. Do not refer to it as a Hill function unless the actual formula confirms that.
+In the PDF, the shown values are consistent with power transforms such as $230.1^{0.5}\approx15.17$. This suggests the worksheet is applying a power transform in that section. Do not refer to it as a Hill function unless the actual formula confirms that.
 
 ---
 
@@ -280,7 +280,7 @@ $$
 \beta_m H(a_{m,t};ec_m,s_m)
 $$
 
-where \(a_{m,t}\) is the adstocked channel input.
+where $a_{m,t}$ is the adstocked channel input.
 
 Some models apply the Hill function before adstock instead:
 
@@ -316,7 +316,7 @@ H\left(
 \epsilon_t
 $$
 
-where \(\mu_t\) represents baseline variation such as trend and seasonality.
+where $\mu_t$ represents baseline variation such as trend and seasonality.
 
 ---
 
@@ -340,7 +340,7 @@ A baseline is model-dependent; it is not directly observed as a separate column 
 
 Common approaches include:
 
-- Time trend terms, such as \(t\), splines, or smooth functions.
+- Time trend terms, such as $t$, splines, or smooth functions.
 - Day-of-week or month-of-year indicators.
 - Holiday indicators.
 - Fourier terms:
@@ -349,7 +349,7 @@ $$
 \sin(2\pi kt/P), \quad \cos(2\pi kt/P)
 $$
 
-where \(P\) is the seasonal period and \(k\) indexes seasonal harmonics.
+where $P$ is the seasonal period and $k$ indexes seasonal harmonics.
 
 - Time-varying intercepts or other structured time effects.
 
@@ -368,7 +368,7 @@ Potential controls include:
 - Organic search or brand interest.
 - Economic or category demand indicators.
 
-Control selection should be based on the assumed causal relationships, not solely on whether a variable improves \(R^2\). A variable that occurs *after* advertising and is caused by it may be a mediator; controlling for it can remove part of the effect one intends to estimate.
+Control selection should be based on the assumed causal relationships, not solely on whether a variable improves $R^2$. A variable that occurs *after* advertising and is caused by it may be a mediator; controlling for it can remove part of the effect one intends to estimate.
 
 Google Meridian specifically discusses controls and organic demand in its [introduction](https://developers.google.com/meridian/docs/basics/meridian-introduction) and [model specification](https://developers.google.com/meridian/docs/advanced-modeling/model-spec).
 
@@ -380,10 +380,10 @@ The causal question is:
 
 > What would the outcome have been in the same period and market if the media activity had been different?
 
-For a channel \(m\), define:
+For a channel $m$, define:
 
-- \(Y_t(1)\): outcome under one media scenario.
-- \(Y_t(0)\): outcome under the counterfactual scenario.
+- $Y_t(1)$: outcome under one media scenario.
+- $Y_t(0)$: outcome under the counterfactual scenario.
 
 The causal effect is:
 
@@ -402,7 +402,7 @@ Common assumptions and risks include:
 5. **No severe omitted confounding:** important common causes of media and outcome are measured and modeled.
 6. **Adequate measurement:** spend, media execution, outcome, controls, and geographies are aligned and accurate.
 
-These assumptions cannot be verified just by looking at a high \(R^2\). Google Meridian's [causal-inference overview](https://developers.google.com/meridian/docs/causal-inference/intro) explains MMM's observational nature and the assumptions required for causal interpretation.
+These assumptions cannot be verified just by looking at a high $R^2$. Google Meridian's [causal-inference overview](https://developers.google.com/meridian/docs/causal-inference/intro) explains MMM's observational nature and the assumptions required for causal interpretation.
 
 ### Experiments and calibration
 
@@ -431,9 +431,9 @@ $$
 
 where:
 
-- \(p(\theta)\): prior distribution over parameters.
-- \(p(y\mid\theta)\): likelihood of the observed data given the parameters.
-- \(p(\theta\mid y)\): posterior distribution after seeing the data.
+- $p(\theta)$: prior distribution over parameters.
+- $p(y\mid\theta)$: likelihood of the observed data given the parameters.
+- $p(\theta\mid y)$: posterior distribution after seeing the data.
 
 For example, if a positive channel effect is expected, a prior may constrain the channel coefficient to be positive. The prior should be documented, justified, and checked against the data and external evidence; it should not be selected merely to force a preferred conclusion.
 
@@ -463,7 +463,7 @@ y_{g,t}
 \epsilon_{g,t}
 $$
 
-where \(g\) indexes geography and \(t\) indexes time. Channel effects can vary by geography, for example:
+where $g$ indexes geography and $t$ indexes time. Channel effects can vary by geography, for example:
 
 $$
 \beta_{g,m}\sim \mathcal{N}(\bar\beta_m,\sigma_m^2)
@@ -481,7 +481,7 @@ These measures are related but not interchangeable.
 
 ### Incremental outcome
 
-For a channel \(m\), the incremental contribution over a period can be represented as a counterfactual difference:
+For a channel $m$, the incremental contribution over a period can be represented as a counterfactual difference:
 
 $$
 \Delta Y_m
@@ -562,7 +562,7 @@ With saturation, marginal returns usually decline as spend increases. Historical
 
 ## 12. Response curves and budget optimization
 
-For channel \(m\), a response curve relates spend \(S_m\) to predicted incremental outcome:
+For channel $m$, a response curve relates spend $S_m$ to predicted incremental outcome:
 
 $$
 R_m(S_m)=\text{predicted incremental outcome at spend }S_m
@@ -662,7 +662,7 @@ For a Bayesian model, also assess:
 
 - Convergence across sampling chains.
 - Trace and density plots.
-- \(\hat R\) and effective sample sizes.
+- $\hat R$ and effective sample sizes.
 - Prior and posterior distributions.
 - Credible-interval width.
 - Posterior predictive behavior.
@@ -694,7 +694,7 @@ Holdout accuracy measures forecasting performance in the tested window. It does 
 - **Double counting:** Paid media, organic media, search volume, promotions, and downstream effects may overlap.
 - **Campaign-level overfragmentation:** Too many sparse inputs can reduce estimability and make carryover difficult to model.
 - **Confusing media volume with spend:** A coefficient on impressions or GRPs is not automatically a return per dollar.
-- **Treating in-sample fit as validation:** High \(R^2\) does not establish causality or stable future performance.
+- **Treating in-sample fit as validation:** High $R^2$ does not establish causality or stable future performance.
 - **Reporting point estimates only:** A single ROI or budget recommendation hides parameter and model uncertainty.
 
 ---
@@ -707,7 +707,7 @@ Holdout accuracy measures forecasting performance in the tested window. It does 
 4. **Explore the data:** Plot outcome and spend over time; inspect seasonality, correlations, variation, and channel coverage.
 5. **Specify the causal story:** Identify confounders and decide which variables are controls, treatments, mediators, or outcomes.
 6. **Choose transformations:** Select plausible lag and saturation forms and document their parameter ranges.
-7. **Fit candidate models:** Use sound regularization or Bayesian priors; avoid choosing solely on in-sample \(R^2\).
+7. **Fit candidate models:** Use sound regularization or Bayesian priors; avoid choosing solely on in-sample $R^2$.
 8. **Validate and diagnose:** Check residuals, holdout behavior, convergence where applicable, prior/posterior learning, and sensitivity to reasonable specifications.
 9. **Calibrate where possible:** Compare to geo experiments or other incrementality evidence with compatible estimands.
 10. **Compute channel outputs:** Estimate incremental outcome, contribution, ROI/ROAS, marginal returns, and response curves with uncertainty.
