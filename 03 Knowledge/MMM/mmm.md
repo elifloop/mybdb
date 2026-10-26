@@ -1,126 +1,3 @@
-Search Tools
-
-Ran terminal command: pdfinfo '/Users/ha471396/Downloads/MMM.pdf' && pdftotext -layout '/Users/ha471396/Downloads/MMM.pdf' -
-
-Search Tools
-
-I’ve extracted the 14-page PDF. I’m reviewing its topics and checking authoritative MMM references so the write-up both covers the document and fills in statistical gaps.
-
-Read tool output
-Completed with input: {
-  "path": "/var/folders/94/wpbdqjq15gb42_nm0cwn9ygw0000gn/T/1793002397811-copilot-tool-output-38240-ee304a20-8ab7-4518-99d2-d7b67fae1090.txt",
-  "view_range": [
-    1,
-    160
-  ]
-}
-
-Fetched [https://www.google.com/search?q=marketing+mix+modeling+Bayesian+adstock+satur...](https://www.google.com/search?q=marketing+mix+modeling+Bayesian+adstock+saturation+causal+inference+Robyn+Meridian+documentation)
-Completed with input: {"url":"https://www.google.com/search?q=marketing+mix+modeling+Bayesian+adstock+saturation+causal+inference+Robyn+Meridian+documentation"}
-
-"Fetch Web Content" failed
-Completed with input: {"url":"https://developers.google.com/meridian/docs/basics/intro"}
-Tool execution failed: Error: Failed to fetch https://developers.google.com/meridian/docs/basics/intro - status code 404
-
-Read tool output
-Completed with input: {
-  "path": "/var/folders/94/wpbdqjq15gb42_nm0cwn9ygw0000gn/T/1793002397811-copilot-tool-output-38240-ee304a20-8ab7-4518-99d2-d7b67fae1090.txt",
-  "view_range": [
-    78,
-    200
-  ]
-}
-
-Search for `https?[^" ]+|Meridian|Robyn|adstock|saturation|Bayesian|hill|carryover`
-
-Fetched [https://developers.google.com/meridian](https://developers.google.com/meridian)
-Completed with input: {"url":"https://developers.google.com/meridian"}
-
-Fetched [https://facebookexperimental.github.io/Robyn/](https://facebookexperimental.github.io/Robyn/)
-Completed with input: {"url":"https://facebookexperimental.github.io/Robyn/"}
-
-Fetched [https://research.google/pubs/bayesian-methods-for-media-mix-modeling-with-car...](https://research.google/pubs/bayesian-methods-for-media-mix-modeling-with-carryover-and-shape-effects/)
-Completed with input: {"url":"https://research.google/pubs/bayesian-methods-for-media-mix-modeling-with-carryover-and-shape-effects/"}
-
-Read tool output
-Completed with input: {
-  "path": "/var/folders/94/wpbdqjq15gb42_nm0cwn9ygw0000gn/T/1793002397811-copilot-tool-output-38240-ee304a20-8ab7-4518-99d2-d7b67fae1090.txt",
-  "view_range": [
-    140,
-    240
-  ]
-}
-
-Fetched [https://developers.google.com/meridian/docs/basics/model-spec](https://developers.google.com/meridian/docs/basics/model-spec)
-Completed with input: {"url":"https://developers.google.com/meridian/docs/advanced-modeling/model-spec"}
-
-"Fetch Web Content" failed
-Completed with input: {
-  "url": "https://developers.google.com/meridian/docs/advanced-modeling/roi-mroi",
-  "max_length": 14000
-}
-Tool execution failed: Error: Failed to fetch https://developers.google.com/meridian/docs/advanced-modeling/roi-mroi - status code 404
-
-Fetched [https://developers.google.com/meridian/docs/advanced-modeling/roi-priors-and-...](https://developers.google.com/meridian/docs/advanced-modeling/roi-priors-and-calibration)
-Completed with input: {
-  "url": "https://developers.google.com/meridian/docs/advanced-modeling/roi-priors-and-calibration",
-  "max_length": 14000
-}
-
-"Fetch Web Content" failed
-Completed with input: {
-  "url": "https://developers.google.com/meridian/docs/advanced-modeling/adstock-hill",
-  "max_length": 14000
-}
-Tool execution failed: Error: Failed to fetch https://developers.google.com/meridian/docs/advanced-modeling/adstock-hill - status code 404
-
-Fetched [https://www.bing.com/search?format=rss&q=marketing+mix+modeling+adstock+Hill+...](https://www.bing.com/search?format=rss&q=marketing+mix+modeling+adstock+Hill+function+Bayesian+causal+inference+documentation)
-Completed with input: {"url":"https://www.bing.com/search?format=rss&q=marketing+mix+modeling+adstock+Hill+function+Bayesian+causal+inference+documentation"}
-
-Fetched [https://developers.google.com/meridian/docs/basics/meridian-introduction](https://developers.google.com/meridian/docs/basics/meridian-introduction)
-Completed with input: {"url":"https://developers.google.com/meridian/docs/basics/meridian-introduction"}
-
-Read , lines 1 to 160
-Completed with input: {
-  "path": "/var/folders/94/wpbdqjq15gb42_nm0cwn9ygw0000gn/T/1793002426476-copilot-tool-output-ca3d0f8ab87b4efe80a719159af5393f.txt",
-  "view_range": [
-    1,
-    160
-  ]
-}
-
-Search for `ROAS|mROI|mROAS|adstock|Hill|saturation|geo|control|prior|Model specification...`
-
-Fetched [https://developers.google.com/meridian/docs/advanced-modeling/media-saturatio...](https://developers.google.com/meridian/docs/advanced-modeling/media-saturation-lagging)
-Completed with input: {"url":"https://developers.google.com/meridian/docs/advanced-modeling/media-saturation-lagging"}
-
-Fetched [https://developers.google.com/meridian/docs/post-modeling/roi-mroi-response-c...](https://developers.google.com/meridian/docs/post-modeling/roi-mroi-response-curves)
-Completed with input: {
-  "url": "https://developers.google.com/meridian/docs/post-modeling/roi-mroi-response-curves",
-  "max_length": 12000
-}
-
-Fetched [https://developers.google.com/meridian/docs/causal-inference/intro](https://developers.google.com/meridian/docs/causal-inference/intro)
-Completed with input: {
-  "url": "https://developers.google.com/meridian/docs/causal-inference/intro",
-  "max_length": 12000
-}
-
-Fetched [https://developers.google.com/meridian/docs/pre-modeling/amount-data-needed](https://developers.google.com/meridian/docs/pre-modeling/amount-data-needed)
-Completed with input: {
-  "url": "https://developers.google.com/meridian/docs/pre-modeling/amount-data-needed",
-  "max_length": 10000
-}
-
-Fetched [https://developers.google.com/meridian/docs/user-guide/model-diagnostics](https://developers.google.com/meridian/docs/user-guide/model-diagnostics)
-Completed with input: {
-  "url": "https://developers.google.com/meridian/docs/user-guide/model-diagnostics",
-  "max_length": 10000
-}
-
-Fetched [https://facebookexperimental.github.io/Robyn/docs/analysts-guide-to-MMM](https://facebookexperimental.github.io/Robyn/docs/analysts-guide-to-MMM)
-Completed with input: {"url":"https://facebookexperimental.github.io/Robyn/docs/analysts-guide-to-MMM/"}
-
 # Marketing Mix Modeling (MMM): Statistical and Mathematical Guide
 
 ## 1. What MMM measures
@@ -133,7 +10,7 @@ A useful MMM should answer three related questions:
 2. **Return:** What is the return on historical spend, and how does return change as spend changes?
 3. **Planning:** How should a future budget be allocated, given business constraints and uncertainty?
 
-MMM is typically based on observational data, so a model’s estimated association is not automatically a causal effect. The causal interpretation depends on data quality, model assumptions, and whether important confounders have been addressed. Google’s [Meridian introduction](https://developers.google.com/meridian/docs/basics/meridian-introduction) describes these as central MMM questions and emphasizes controls, priors, geo-level data, and uncertainty.
+MMM is typically based on observational data, so a model's estimated association is not automatically a causal effect. The causal interpretation depends on data quality, model assumptions, and whether important confounders have been addressed. See [Google Meridian's introduction](https://developers.google.com/meridian/docs/basics/meridian-introduction).
 
 ---
 
@@ -157,7 +34,7 @@ The extracted worksheet shows an initial linear model with approximately:
 
 It reports approximately **R² = 0.8869** and **RMSE = 1.7592** for one model. A later transformed model reports coefficients around Radio = -0.7399, TV = 0.7241, FB = 0.9812, and intercept = -1.8886, with **R² = 0.9228** and **RMSE = 1.4534**.
 
-The worksheet also appears to use channel-specific power exponents, with values around 0.5 for Facebook, 0.7 for TV, and 0.3 for Radio. For example, \(230.1^{0.5}\approx15.17\), matching the transformed Facebook value shown. This is a power transformation; it is **not the same as the commonly used Hill saturation function**.
+The worksheet also appears to use channel-specific power exponents, with values around 0.5 for Facebook, 0.7 for TV, and 0.3 for Radio. For example, `230.1^0.5 ≈ 15.17`, matching the transformed Facebook value shown. This is a power transformation; it is **not the same as the commonly used Hill saturation function**.
 
 ### Important interpretation of the PDF
 
@@ -166,10 +43,10 @@ Treat this as a teaching example, not a production-ready MMM:
 - Thirty daily observations are a very small sample for separating media effects from trend, seasonality, promotions, and other drivers.
 - The row labels say “Week” even though the dates are consecutive days. The intended time unit should be clarified.
 - The extracted worksheet does not show a clear trend, seasonality, price, distribution, promotion, holiday, or other control-variable specification.
-- A reported high in-sample \(R^2\) does not establish that the channel coefficients are causal or that the model will predict future results.
+- A reported high in-sample R² does not establish that the channel coefficients are causal or that the model will predict future results.
 - Radio has a negative coefficient in the extracted regressions. This can occur from noise, correlation among channels, omitted variables, timing, or model misspecification; it does not, by itself, prove radio reduces sales.
-- The worksheet’s adstock settings and displayed recurrence values appear inconsistent for at least one channel. For example, a shown TV carryover value appears to use a 0.2 multiplier despite a separate parameter row showing 0.1. Verify the spreadsheet formulas and parameter-to-channel mapping before relying on its ROAS.
-- The PDF’s ROAS output is not enough to validate the calculation. Confirm that the numerator is **incremental** outcome attributable to the channel, and that the spend denominator uses compatible time periods, currency, and cost data.
+- The worksheet's adstock settings and displayed recurrence values appear inconsistent for at least one channel. For example, a shown TV carryover value appears to use a 0.2 multiplier despite a separate parameter row showing 0.1. Verify the spreadsheet formulas and parameter-to-channel mapping before relying on its ROAS.
+- The PDF's ROAS output is not enough to validate the calculation. Confirm that the numerator is **incremental** outcome attributable to the channel, and that the spend denominator uses compatible time periods, currency, and cost data.
 
 ---
 
@@ -177,9 +54,9 @@ Treat this as a teaching example, not a production-ready MMM:
 
 For one market observed over time, a simple starting point is:
 
-\[
+$$
 y_t = \beta_0 + \sum_{m=1}^{M}\beta_m x_{m,t} + \epsilon_t
-\]
+$$
 
 where:
 
@@ -191,7 +68,7 @@ where:
 
 A more realistic model includes non-media drivers and time patterns:
 
-\[
+$$
 y_t =
 \underbrace{B_t}_{\text{baseline}}
 +
@@ -200,7 +77,7 @@ y_t =
 \sum_{j=1}^{J}\gamma_j z_{j,t}
 +
 \epsilon_t
-\]
+$$
 
 Here, \(z_{j,t}\) can include price, promotions, distribution, holidays, competitor activity, macroeconomic conditions, or other appropriate controls.
 
@@ -223,28 +100,28 @@ MMM therefore typically transforms media variables before estimating channel eff
 
 For a linear model written as
 
-\[
+$$
 \mathbf y = \mathbf X\boldsymbol\beta+\boldsymbol\epsilon,
-\]
+$$
 
 OLS estimates coefficients by minimizing the sum of squared residuals:
 
-\[
+$$
 \hat{\boldsymbol\beta}
 =
 \arg\min_{\boldsymbol\beta}
 \sum_{t=1}^{T}(y_t-\hat y_t)^2
 =
 (\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\mathbf y
-\]
+$$
 
 when the inverse exists.
 
 The residual for an observation is:
 
-\[
+$$
 e_t = y_t-\hat y_t
-\]
+$$
 
 OLS is a useful baseline, but standard uncertainty calculations rely on assumptions that may be unrealistic for marketing time series, including a correctly specified mean, independent errors, and appropriate error variance. Serial correlation, changing variance, nonlinear response, and omitted confounding can make ordinary regression estimates or their standard errors misleading.
 
@@ -269,18 +146,18 @@ Useful checks include a correlation matrix, variance inflation factors for suita
 
 **Ridge regression** adds an \(L_2\) penalty:
 
-\[
+$$
 \hat{\boldsymbol\beta}_{ridge}
 =
 \arg\min_{\boldsymbol\beta}
 \left[
 \sum_t(y_t-\hat y_t)^2
 +
-\lambda\sum_{m}\beta_m^2
+\lambda\sum_m\beta_m^2
 \right]
-\]
+$$
 
-The penalty shrinks coefficients toward zero and can stabilize correlated predictors. It introduces bias in exchange for reduced variance. It is not a substitute for causal identification or good input data. Meta’s [Robyn overview](https://facebookexperimental.github.io/Robyn/) describes ridge regularization, automated model search, and experiment calibration as parts of its MMM workflow.
+The penalty shrinks coefficients toward zero and can stabilize correlated predictors. It introduces bias in exchange for reduced variance. It is not a substitute for causal identification or good input data. Meta's [Robyn overview](https://facebookexperimental.github.io/Robyn/) describes ridge regularization, automated model search, and experiment calibration as parts of its MMM workflow.
 
 ---
 
@@ -290,9 +167,9 @@ The penalty shrinks coefficients toward zero and can stabilize correlated predic
 
 Advertising can have a delayed or persistent effect. A common geometric adstock recurrence is:
 
-\[
+$$
 a_t = x_t + \lambda a_{t-1}, \qquad 0\leq\lambda<1
-\]
+$$
 
 where:
 
@@ -302,20 +179,20 @@ where:
 
 Expanding the recurrence gives:
 
-\[
+$$
 a_t = x_t + \lambda x_{t-1} + \lambda^2x_{t-2}+\cdots
-\]
+$$
 
 Thus, the impact of prior execution decreases geometrically with lag. A larger \(\lambda\) means slower decay.
 
 Some implementations normalize the weights to make the transformed value a weighted average:
 
-\[
+$$
 a_t
 =
 \frac{\sum_{s=0}^{L} w(s;\lambda)x_{t-s}}
 {\sum_{s=0}^{L}w(s;\lambda)}
-\]
+$$
 
 where \(L\) is the maximum lag and \(w(s;\lambda)\) is a decay-weight function. The normalized and unnormalized forms have different scales, so coefficient values are not directly comparable across implementations.
 
@@ -323,13 +200,13 @@ where \(L\) is the maximum lag and \(w(s;\lambda)\) is a decay-weight function. 
 
 For geometric decay, the half-life \(h\) is the number of periods at which the remaining weight is half:
 
-\[
+$$
 \lambda^h=0.5
 \quad\Longrightarrow\quad
 h=\frac{\log(0.5)}{\log(\lambda)}
-\]
+$$
 
-For instance, if \(\lambda=0.5\), the weight halves after one period. The period must match the data frequency: a weekly model’s “one period” is a week.
+For instance, if \(\lambda=0.5\), the weight halves after one period. The period must match the data frequency: a weekly model's “one period” is a week.
 
 ### Adstock is not just “past spend”
 
@@ -341,7 +218,7 @@ Adstock is a model of how media execution carries forward into outcome. Its spec
 - Whether the transformation is normalized.
 - Whether saturation is applied before or after adstock.
 
-These choices should be plausible for the channel and tested for sensitivity. Google Meridian’s [media saturation and lagging guide](https://developers.google.com/meridian/docs/advanced-modeling/media-saturation-lagging) describes weighted lag functions and the distinction between lag and saturation.
+These choices should be plausible for the channel and tested for sensitivity. Google Meridian's [media saturation and lagging guide](https://developers.google.com/meridian/docs/advanced-modeling/media-saturation-lagging) describes weighted lag functions and the distinction between lag and saturation.
 
 ---
 
@@ -353,13 +230,13 @@ A linear media effect assumes every additional unit of media has the same effect
 
 A widely used saturation function is:
 
-\[
+$$
 H(x; ec,s)
 =
 \frac{1}{1+\left(\frac{x}{ec}\right)^{-s}}
 =
 \frac{x^s}{x^s+ec^s}
-\]
+$$
 
 where:
 
@@ -371,21 +248,21 @@ For \(s\leq1\), the function is concave. For \(s>1\), it is S-shaped: initially 
 
 The derivative is:
 
-\[
+$$
 \frac{\partial H}{\partial x}
 =
 \frac{s\,ec^s\,x^{s-1}}{(x^s+ec^s)^2}
-\]
+$$
 
-The derivative describes how fast the transformed media effect changes with execution. It is not itself the marginal sales effect until multiplied by the model’s channel coefficient and any other transformation factors.
+The derivative describes how fast the transformed media effect changes with execution. It is not itself the marginal sales effect until multiplied by the model's channel coefficient and any other transformation factors.
 
 ### Power transformations versus Hill functions
 
 A power transform, such as
 
-\[
+$$
 x^\alpha,\qquad 0<\alpha<1,
-\]
+$$
 
 is concave and can represent diminishing returns over a range. It is **not bounded**, does not have a half-saturation point, and behaves differently from a Hill curve.
 
@@ -397,35 +274,35 @@ In the PDF, the shown values are consistent with power transforms such as \(230.
 
 One common channel effect is:
 
-\[
+$$
 \text{Effect}_{m,t}
 =
 \beta_m H(a_{m,t};ec_m,s_m)
-\]
+$$
 
 where \(a_{m,t}\) is the adstocked channel input.
 
 Some models apply the Hill function before adstock instead:
 
-\[
+$$
 a_{m,t}
 =
 \text{Adstock}\big(H(x_{m,t});\lambda_m\big)
-\]
+$$
 
 These are not generally equivalent:
 
-\[
+$$
 H(\text{Adstock}(x))
 \ne
 \text{Adstock}(H(x))
-\]
+$$
 
-The choice changes the model’s interpretation and should be explicit. Google Meridian documents both orderings in its [model specification](https://developers.google.com/meridian/docs/advanced-modeling/model-spec).
+The choice changes the model's interpretation and should be explicit. Google Meridian documents both orderings in its [model specification](https://developers.google.com/meridian/docs/advanced-modeling/model-spec).
 
 A simplified nonlinear MMM can be written as:
 
-\[
+$$
 y_t =
 \mu_t
 +
@@ -437,7 +314,7 @@ H\left(
 \sum_{j=1}^{J}\gamma_jz_{j,t}
 +
 \epsilon_t
-\]
+$$
 
 where \(\mu_t\) represents baseline variation such as trend and seasonality.
 
@@ -447,7 +324,7 @@ where \(\mu_t\) represents baseline variation such as trend and seasonality.
 
 ### Baseline
 
-The **baseline** is the model-estimated outcome absent the modeled incremental media effect, subject to the model’s definition of “media off.” It commonly contains:
+The **baseline** is the model-estimated outcome absent the modeled incremental media effect, subject to the model's definition of “media off.” It commonly contains:
 
 - Long-term trend.
 - Seasonality and recurring calendar effects.
@@ -468,11 +345,12 @@ Common approaches include:
 - Holiday indicators.
 - Fourier terms:
 
-\[
+$$
 \sin(2\pi kt/P), \quad \cos(2\pi kt/P)
-\]
+$$
 
 where \(P\) is the seasonal period and \(k\) indexes seasonal harmonics.
+
 - Time-varying intercepts or other structured time effects.
 
 If seasonality is omitted, media may receive credit for recurring periods when sales would have been high anyway. If trend is too flexible, the model may absorb genuine media variation. Model these effects deliberately and check sensitivity.
@@ -509,9 +387,9 @@ For a channel \(m\), define:
 
 The causal effect is:
 
-\[
+$$
 \tau_t = Y_t(1)-Y_t(0)
-\]
+$$
 
 Only one scenario is observed at a time. MMM estimates the unobserved counterfactual using the model and its assumptions.
 
@@ -524,7 +402,7 @@ Common assumptions and risks include:
 5. **No severe omitted confounding:** important common causes of media and outcome are measured and modeled.
 6. **Adequate measurement:** spend, media execution, outcome, controls, and geographies are aligned and accurate.
 
-These assumptions cannot be verified just by looking at a high \(R^2\). Google Meridian’s [causal-inference overview](https://developers.google.com/meridian/docs/causal-inference/intro) explains MMM’s observational nature and the assumptions required for causal interpretation.
+These assumptions cannot be verified just by looking at a high \(R^2\). Google Meridian's [causal-inference overview](https://developers.google.com/meridian/docs/causal-inference/intro) explains MMM's observational nature and the assumptions required for causal interpretation.
 
 ### Experiments and calibration
 
@@ -533,7 +411,7 @@ Geo experiments, lift tests, or other well-designed incrementality experiments c
 - Check whether model estimates align with experimental results.
 - Calibrate priors or constrain plausible ranges.
 - Diagnose model bias.
-- Inform a channel’s response curve.
+- Inform a channel's response curve.
 
 Experiments must match the channel, market, time window, outcome, and estimand being modeled. A short-run lift estimate may not directly identify long-run carryover or the full spend-response curve.
 
@@ -543,13 +421,13 @@ Experiments must match the channel, market, time window, outcome, and estimand b
 
 Bayesian models represent uncertain parameters as probability distributions.
 
-Bayes’ rule is:
+Bayes' rule is:
 
-\[
+$$
 p(\theta\mid y)
 =
 \frac{p(y\mid\theta)p(\theta)}{p(y)}
-\]
+$$
 
 where:
 
@@ -568,13 +446,13 @@ A Bayesian MMM yields distributions for:
 
 The output should therefore include intervals and uncertainty, not only point estimates. If a posterior is very similar to its prior, the data may contain little information about that parameter. Low spend, little spend variation, short history, or high channel correlation can all contribute.
 
-Google’s 2017 paper, [“Bayesian Methods for Media Mix Modeling with Carryover and Shape Effects”](https://research.google/pubs/bayesian-methods-for-media-mix-modeling-with-carryover-and-shape-effects/), describes Bayesian estimation of carryover and response shape and deriving ROI and marginal ROI from posterior samples.
+Google's 2017 paper, [“Bayesian Methods for Media Mix Modeling with Carryover and Shape Effects”](https://research.google/pubs/bayesian-methods-for-media-mix-modeling-with-carryover-and-shape-effects/), describes Bayesian estimation of carryover and response shape and deriving ROI and marginal ROI from posterior samples.
 
 ### Hierarchical geo models
 
 When data are available across regions or markets, a hierarchical model can partially pool information:
 
-\[
+$$
 y_{g,t}
 =
 \mu_t+\tau_g+
@@ -583,17 +461,17 @@ y_{g,t}
 \sum_j\gamma_{g,j}z_{g,j,t}
 +
 \epsilon_{g,t}
-\]
+$$
 
 where \(g\) indexes geography and \(t\) indexes time. Channel effects can vary by geography, for example:
 
-\[
+$$
 \beta_{g,m}\sim \mathcal{N}(\bar\beta_m,\sigma_m^2)
-\]
+$$
 
 Partial pooling allows markets to have different effects while sharing information across markets. This can be more informative than a single national time series, especially when media varies differently by region. It does not make geos statistically independent; shared shocks and spillovers still matter.
 
-Google Meridian’s [model specification](https://developers.google.com/meridian/docs/advanced-modeling/model-spec) describes a geo-level hierarchical model with nonlinear media transformations and random coefficients. Its [data-size guidance](https://developers.google.com/meridian/docs/pre-modeling/amount-data-needed) notes that the effective information depends on pooling, parameter count, and variation—not just the raw number of rows.
+Google Meridian's [model specification](https://developers.google.com/meridian/docs/advanced-modeling/model-spec) describes a geo-level hierarchical model with nonlinear media transformations and random coefficients. Its [data-size guidance](https://developers.google.com/meridian/docs/pre-modeling/amount-data-needed) notes that the effective information depends on pooling, parameter count, and variation—not just the raw number of rows.
 
 ---
 
@@ -605,7 +483,7 @@ These measures are related but not interchangeable.
 
 For a channel \(m\), the incremental contribution over a period can be represented as a counterfactual difference:
 
-\[
+$$
 \Delta Y_m
 =
 \sum_t
@@ -614,7 +492,7 @@ For a channel \(m\), the incremental contribution over a period can be represent
 -
 \hat y_t(\text{media}_m=0)
 \right]
-\]
+$$
 
 The exact calculation depends on the model, including whether carryover from prior periods is retained or also set to zero. Define this explicitly.
 
@@ -622,12 +500,12 @@ The exact calculation depends on the model, including whether carryover from pri
 
 A common contribution share is:
 
-\[
+$$
 \text{Contribution Share}_m
 =
 \frac{\Delta Y_m}
 {\sum_k\Delta Y_k+\text{other modeled components}}
-\]
+$$
 
 The denominator definition matters. Do not assume channel shares sum to 100% if the model includes baseline, organic media, non-media treatments, or other components.
 
@@ -635,12 +513,12 @@ The denominator definition matters. Do not assume channel shares sum to 100% if 
 
 If the outcome is revenue:
 
-\[
+$$
 \text{ROAS}_m
 =
 \frac{\text{Incremental Revenue}_m}
 {\text{Media Spend}_m}
-\]
+$$
 
 ROAS is typically expressed as revenue returned per unit of advertising spend.
 
@@ -648,12 +526,12 @@ ROAS is typically expressed as revenue returned per unit of advertising spend.
 
 A common profit-oriented definition is:
 
-\[
+$$
 \text{ROI}_m
 =
 \frac{\text{Incremental Profit}_m-\text{Spend}_m}
 {\text{Spend}_m}
-\]
+$$
 
 If the numerator is incremental revenue rather than incremental profit, label the metric accordingly. “ROI” is used inconsistently across organizations; state the exact formula, revenue/profit assumption, and cost scope.
 
@@ -661,24 +539,24 @@ If the numerator is incremental revenue rather than incremental profit, label th
 
 Average ROAS describes historical return over a spend range. The **marginal** return describes the predicted effect of a small additional spend change:
 
-\[
+$$
 \text{mROAS}_m
 =
 \frac{\partial\,\text{Incremental Revenue}_m}
 {\partial\,\text{Spend}_m}
-\]
+$$
 
 If the model input is impressions or GRPs rather than spend, use the chain rule to convert media execution to spend:
 
-\[
+$$
 \frac{\partial Y}{\partial S}
 =
 \frac{\partial Y}{\partial x}
 \cdot
 \frac{\partial x}{\partial S}
-\]
+$$
 
-With saturation, marginal returns usually decline as spend increases. Historical ROAS alone is therefore not enough to decide where the next dollar should go. Google Meridian’s [incremental outcome, ROI, mROI, and response-curve guide](https://developers.google.com/meridian/docs/post-modeling/roi-mroi-response-curves) covers these related outputs.
+With saturation, marginal returns usually decline as spend increases. Historical ROAS alone is therefore not enough to decide where the next dollar should go. Google Meridian's [incremental outcome, ROI, mROI, and response-curve guide](https://developers.google.com/meridian/docs/post-modeling/roi-mroi-response-curves) covers these related outputs.
 
 ---
 
@@ -686,39 +564,39 @@ With saturation, marginal returns usually decline as spend increases. Historical
 
 For channel \(m\), a response curve relates spend \(S_m\) to predicted incremental outcome:
 
-\[
+$$
 R_m(S_m)=\text{predicted incremental outcome at spend }S_m
-\]
+$$
 
 The slope is the marginal response:
 
-\[
+$$
 R'_m(S_m)
 =
 \frac{\partial R_m}{\partial S_m}
-\]
+$$
 
 A budget allocation problem can be written as:
 
-\[
+$$
 \max_{S_1,\ldots,S_M}
 \sum_{m=1}^{M} R_m(S_m)
-\]
+$$
 
 subject to:
 
-\[
+$$
 \sum_{m=1}^{M}S_m\leq B,\qquad
 S_m^{min}\leq S_m\leq S_m^{max}
-\]
+$$
 
 and any additional business constraints, such as minimum channel presence, contractual commitments, or region-level limits.
 
 For a smooth optimum with no binding channel-specific constraints, the theoretical allocation equalizes marginal returns across funded channels:
 
-\[
+$$
 R'_1(S_1)=R'_2(S_2)=\cdots=R'_M(S_M)
-\]
+$$
 
 In practice, optimization must account for:
 
@@ -739,31 +617,31 @@ An optimizer can produce a mathematically optimal answer for a misspecified mode
 
 Common descriptive metrics include:
 
-\[
+$$
 R^2
 =
 1-\frac{\sum_t(y_t-\hat y_t)^2}
 {\sum_t(y_t-\bar y)^2}
-\]
+$$
 
-\[
+$$
 RMSE
 =
-\sqrt{\frac{1}{T}\sum_t(y_t-\hat y_t)^2}
-\]
+\sqrt{\frac{1}{T}\sum_{t=1}^{T}(y_t-\hat y_t)^2}
+$$
 
-\[
+$$
 MAE
 =
-\frac{1}{T}\sum_t|y_t-\hat y_t|
-\]
+\frac{1}{T}\sum_{t=1}^{T}|y_t-\hat y_t|
+$$
 
-\[
+$$
 MAPE
 =
 \frac{100}{T}
-\sum_t\left|\frac{y_t-\hat y_t}{y_t}\right|
-\]
+\sum_{t=1}^{T}\left|\frac{y_t-\hat y_t}{y_t}\right|
+$$
 
 MAPE is undefined or unstable when actuals are zero or close to zero. Weighted MAPE and scale-aware errors may be more suitable for some datasets.
 
@@ -789,7 +667,7 @@ For a Bayesian model, also assess:
 - Credible-interval width.
 - Posterior predictive behavior.
 
-Google Meridian’s [model-diagnostics guide](https://developers.google.com/meridian/docs/user-guide/model-diagnostics) describes convergence checks, prior/posterior comparisons, and predictive fit as separate diagnostics. Its guidance also cautions that fit metrics are confidence checks, not the ultimate objective of an MMM.
+Google Meridian's [model-diagnostics guide](https://developers.google.com/meridian/docs/user-guide/model-diagnostics) describes convergence checks, prior/posterior comparisons, and predictive fit as separate diagnostics. Its guidance also cautions that fit metrics are confidence checks, not the ultimate objective of an MMM.
 
 ### Holdout validation
 
@@ -806,7 +684,7 @@ Holdout accuracy measures forecasting performance in the tested window. It does 
 ## 14. Common data and modeling pitfalls
 
 - **Too little history:** A model with many channels, controls, and time effects may be underdetermined.
-- **Insufficient spend variation:** If a channel’s spend is nearly constant, its effect is difficult to estimate.
+- **Insufficient spend variation:** If a channel's spend is nearly constant, its effect is difficult to estimate.
 - **High channel correlation:** The model may fit the total outcome while struggling to attribute effects to individual channels.
 - **Omitted confounders:** Promotions, price, distribution, holidays, and organic demand may be attributed to media.
 - **Incorrect time alignment:** Spend, impressions, sales, and cost must use consistent dates, time zones, geographies, and aggregation.
