@@ -8,7 +8,7 @@ time bounded correlation/ cointegration between returns & market data
 
 ##### Architecture
 
-'''mermaid
+```mermaid
 flowchart LR
     A[1. Data Layer<br/>market + alt data<br/>point-in-time] --> B[2. Research Platform<br/>features, signals,<br/>hypotheses]
     B --> C[3. Backtesting & Simulation<br/>costs, slippage,<br/>Monte Carlo]
@@ -25,8 +25,7 @@ flowchart LR
 
     I[9. People & Process<br/>idea → test → review →<br/>deploy → retire] -.-> B
     I -.-> G
-'''
-
+```
 Layer 1 — Data
 Bloomberg / Refinitiv / CRSP / Compustat / FRED / alternative data
 
