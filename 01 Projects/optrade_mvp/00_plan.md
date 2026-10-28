@@ -6,6 +6,27 @@ time bounded correlation/ cointegration between returns & market data
 
 ### HL components
 
+##### Architecture
+
+'''mermaid
+flowchart LR
+    A[1. Data Layer<br/>market + alt data<br/>point-in-time] --> B[2. Research Platform<br/>features, signals,<br/>hypotheses]
+    B --> C[3. Backtesting & Simulation<br/>costs, slippage,<br/>Monte Carlo]
+    C --> D[4. Portfolio & Risk<br/>sizing, limits,<br/>drawdown control]
+    D --> E[5. Execution<br/>routing, cost model,<br/>broker connectivity]
+    E --> F[6. Production Infra<br/>deploy, schedule,<br/>monitor]
+    F --> G[7. Post-trade Analysis<br/>P&L attribution,<br/>signal decay]
+    G -->|feedback| B
+
+    H[8. Governance & Compliance<br/>validation, audit trail,<br/>kill switch] -.-> C
+    H -.-> D
+    H -.-> E
+    H -.-> F
+
+    I[9. People & Process<br/>idea → test → review →<br/>deploy → retire] -.-> B
+    I -.-> G
+'''
+
 Layer 1 — Data
 Bloomberg / Refinitiv / CRSP / Compustat / FRED / alternative data
 
