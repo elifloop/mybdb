@@ -1,8 +1,8 @@
 
 
-### hypothesis 
+### hypothesis to test
 
-time bounded correlation/ cointegration between returns & market data
+not clear yet
 
 ### HL components
 
@@ -14,62 +14,28 @@ flowchart LR
     B --> C[3. Backtesting & Simulation<br/>costs, slippage,<br/>Monte Carlo]
     C --> D[4. Portfolio & Risk<br/>sizing, limits,<br/>drawdown control]
     D --> E[5. Execution<br/>routing, cost model,<br/>broker connectivity]
-    E --> F[6. Production Infra<br/>deploy, schedule,<br/>monitor]
-    F --> G[7. Post-trade Analysis<br/>P&L attribution,<br/>signal decay]
-    G -->|feedback| B
+    E --> F[6. Post-trade Analysis<br/>P&L attribution,<br/>signal decay]
 
-    H[8. Governance & Compliance<br/>validation, audit trail,<br/>kill switch] -.-> C
-    H -.-> D
-    H -.-> E
-    H -.-> F
-
-    I[9. People & Process<br/>idea → test → review →<br/>deploy → retire] -.-> B
-    I -.-> G
 ```
-Layer 1 — Data
-Bloomberg / Refinitiv / CRSP / Compustat / FRED / alternative data
+##### 1. data Layer
+Bloomberg / Refinitiv / CRSP / Compustat / FRED / alternative data / adhoc docs
 
-Layer 2 — Statistical research
-Python
-- pandas
-- numpy
-- statsmodels
-- sklearn
-- scipy
-- PyMC
-- vectorbt / Backtrader
-  
-Layer 3 — Quant model
+##### 2. QR Layer
+Stats/ DL/ ML
 Factor model / alpha model / volatility model / portfolio optimizer
 
-Layer 4 — Grey Machines
-Scenario engine
-- causal relationships
-- feedback loops
-- parameter uncertainty
-- external shocks
-- Monte Carlo
-- scenario clustering
-- sensitivity analysis
+##### 3. backtest Layer
+- Scenario engine, causal relationships, feedback loops, parameter uncertainty, external shocks,scenario clustering, sensitivity analysis
+- ** Monte Carlo simulation **
 
-Layer 5 — Decision
-Expected return
-Volatility
-VaR
-Expected Shortfall
-Drawdown
-Scenario probabilities
-Tail exposure
-Key risk drivers
+##### 4. risk layer
+Expected return, Volatility, VaR, Expected Shortfall, Drawdown, Scenario probabilities, Tail exposure, Key risk drivers
 
+##### 5. execution layer
+- NL based output
+- trade trigger zerodha apis
 
-## LL Components
+##### 6. retrospective layer
+- Reconciliation, P&L attribution and signal decay tracking. It shows whether live results match backtests and feeds back into research.
 
-Layer 1 — Data
-	- ohlc data 
-	- market data
-		- bcg {in progress}
-		
-- data science 
-	- research algorithm - in progress - /home/harsh/Documents/projects/optrade/optrade-datascience/study
-
+##### 7. 
