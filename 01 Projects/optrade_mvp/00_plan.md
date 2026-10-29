@@ -2,7 +2,24 @@
 
 ### hypothesis to test
 
-not clear yet
+1. opt position to take for nifty range at expiry (M, Q, Y)
+2. long terms stock positioning
+
+ ### req
+ 
+ #### data req
+
+                    EXTERNAL / INTERNAL SOURCES
+                              │
+          ┌───────────────────┼────────────────────┐
+          │                   │                    │
+     Market data          Fundamentals        Alternative data
+     prices/trades        financials           text / satellite /
+     order books          estimates             web / transactions
+          │                   │                    │
+          └───────────────────┼────────────────────┘
+ 
+ 
 
 ### HL components
 
@@ -19,6 +36,14 @@ flowchart LR
 ```
 ##### 1. data Layer
 Bloomberg / Refinitiv / CRSP / Compustat / FRED / alternative data / adhoc docs
+
+ ohlc (global & local) - yfinance 
+ news/ sentiment - web scraping 
+ events - ?? 
+ macro economics - ?? 
+ fii/dii - nse
+ crude oil - 
+ commodity pricing - 
 
 ##### 2. QR Layer
 Stats/ DL/ ML
