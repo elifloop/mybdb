@@ -43,7 +43,7 @@ Bloomberg / Refinitiv / CRSP / Compustat / FRED / alternative data / adhoc docs
  macro economics - ?? 
  fii/dii - nse
  crude oil - 
- commodity pricing - 
+ commodity pricing - onion & milk
 
 ##### 2. QR Layer
 Stats/ DL/ ML
