@@ -7,7 +7,9 @@
 -> learning c++
 
 ### optrade ###
--> simapp - connect data sources + logs to db 
+-> sim - understand wht it is
+-> de - finalize aources list 
+-> ds - test out hypothesis
 
 ### FDE ###
 -> fde interview - rag etc. going on 
