@@ -1,0 +1,1 @@
+- order and degree of an eqn ; ex- (d3x/dy2)^2 =0 - degree is 2 and order is 3
