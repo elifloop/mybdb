@@ -64,3 +64,11 @@ Expected return, Volatility, VaR, Expected Shortfall, Drawdown, Scenario probabi
 - Reconciliation, P&L attribution and signal decay tracking. It shows whether live results match backtests and feeds back into research.
 
 ##### 7. 
+
+
+
+
+
+### DS Layer - draft 1- 
+
+<img width="855" height="652" alt="Screenshot 2026-11-12 at 4 07 49 PM" src="https://github.com/user-attachments/assets/c229f127-4919-4617-95f1-0eaa135e1db9" />
