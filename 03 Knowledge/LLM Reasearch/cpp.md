@@ -123,3 +123,46 @@ vars
 - type name; type name = value; modifier type name;
 - example- int myInt; int myintt = 20; unsigned int myinttt;
 
+## 7. operators in C
+
+*C operators can be classified into a number of categories. They are:*
+- Arithmetic operators. - `+ - * / %`
+- Relational Operators. - `< > <= >= == !=`
+- Logical Operators. - `&& || !`
+- Assignment Operators. - shorthand `= a+=1 a-=1 a*=n+1` 
+- Increment and Decrement Operators. - `m++ or ++m; m-- or --m`
+- Conditional Operators. - A ternary operator pair ?: is available in C to construct conditional expressions - Exp1? Exp2: Exp3
+  *Exp1 is evaluated first. If it is nonzero (true), then exp2 expression is evaluated and becomes the value of the expression. If exp1 is false, exp3 is evaluated and its value becomes the value of the expression. Here only one of the expressions is evaluated.*
+- Bitwise Operators. - are special operators that are used for manipulation of data at the bit level. - `& | ^ - bitwise AND, OR, exclusive  OR respectively; << >> - shift left & right resp; ~ - complement`
+- Special Operators. - comma, sizeof, pointer op (& and *), member selection operator
+  
+## 8. loops
+
+```
+int main() {
+    for (int i =0; i<10; i++)
+        cout << i << endl;
+return 0;
+```
+
+OR 
+
+```
+int main() {
+    int i = 0;
+    for (; i<10; i++)
+        cout << i << endl;
+return 0;
+```
+
+OR 
+
+```
+int main() {
+    int i = 0;
+    while (i < 10) {
+        cout << i << endl;
+        i++;
+    }
+return 0;
+```
