@@ -137,7 +137,7 @@ vars
 - Special Operators. - comma, sizeof, pointer op (& and *), member selection operator
   
 ## 8. loops
-
+### [for and while]
 ```
 int main() {
     for (int i =0; i<10; i++)
@@ -166,3 +166,73 @@ int main() {
     }
 return 0;
 ```
+
+### [do while]
+
+```
+int main() {
+
+    const string PASSWORD = "secret";
+    string inp;
+
+    do {
+        cout << "Enter the password: ";
+        cin >> inp;
+        if (inp != PASSWORD) {
+            cout << "Access denied." << endl;
+        }
+    } while (inp != PASSWORD);
+
+    cout << "Access granted." << endl;
+}
+```
+
+## 9. Testing
+
+- Unit testing validates the implementation of all objects from the lowest level defined in the detailed design (classes and functions) up to and including the lowest level in the architectural design (equivalent to the WBS components). The next layer of testing, known as integration testing, tests the interfaces between the architectural design objects (i.e. WBS components)
+- Types of Unit Tests
+     - White-box Tests - These tests are designed by examining the internal logic of each module and defining the input data sets that force the execution of different paths through the logic. Each input data set is a test case.
+     - Black-box Tests - These tests are designed by examining the specification of each module and defining input data sets that will result in different behavior (e.g. outputs). Black-box tests should be designed to exercise the software for its whole range of inputs. Each input data set is a test case.
+     - Performance Tests - If the detailed design placed resource constraints on the performance of a module, compliance with these constraints should be tested. Each input data set is a test case.
+     - <img width="428" height="517" alt="Screenshot 2026-11-13 at 3 20 23 PM" src="https://github.com/user-attachments/assets/c99eb00a-73c3-44dd-871e-4970af07412f" />
+- LSST DM developers should use Python’s unittest framework.
+- lsst.utils.tests provides several utilities for writing Python tests that developers should make use of. In particular,  lsst.utils.tests.MemoryTestCase is used to detect memory leaks in C++ objects.  MemoryTestCase should be used in all tests, even if C++ code is not explicitly referenced.
+
+```
+import unittest
+
+import lsst.utils.tests as utilsTests
+
+
+class DemoTestCase(utilsTests.TestCase):
+    """Demo test case."""
+
+    def testDemo(self):
+        assert True
+
+
+def suite():
+    """Returns a suite containing all the test cases in this module."""
+    utilsTests.init()
+
+    suites = []
+    # Test suites for this module here
+    suites += unittest.makeSuite(DemoTestCase)
+    # MemoryTestCase to find C++ memory leaks
+    suites += unittest.makeSuite(utilsTests.MemoryTestCase)
+    return unittest.TestSuite(suites)
+
+
+def run(exit=False):
+    """Run the tests"""
+    utilsTests.run(suite(), exit)
+
+
+if __name__ == "__main__":
+    run(True)
+```
+
+
+
+
+
